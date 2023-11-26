@@ -173,7 +173,7 @@ export default function SandEditor() {
         dependencies: presets[preset].dependencies,
       }}
       files={presets[preset].files as SandpackFiles}
-      theme="auto"
+      theme="dark"
       template={presets[preset].template}
       options={{
         externalResources: presets[preset].externalResources,
