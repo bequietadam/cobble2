@@ -1,6 +1,7 @@
 'use client'
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Sandpack, SandpackCodeEditor, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
+import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
 import PresetDropdown, { Preset } from '@components/PresetDropdown';
@@ -173,7 +174,7 @@ export default function SandEditor() {
         dependencies: presets[preset].dependencies,
       }}
       files={presets[preset].files as SandpackFiles}
-      theme="dark"
+      theme={nightOwl}
       template={presets[preset].template}
       options={{
         externalResources: presets[preset].externalResources,

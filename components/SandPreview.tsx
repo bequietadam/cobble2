@@ -1,4 +1,4 @@
-
+"use client"
 import { SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
 import React from 'react';
 import { CobbleServer } from './SandEditor';
