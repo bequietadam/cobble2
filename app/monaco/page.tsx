@@ -18,7 +18,7 @@ import LanguageDropdown from "@components/LanguageDropdown";
 import { MonacoTheme } from '@/constants/monacoThemes';
 import ThemeDropdown from "@components/ThemeDropdown";
 import TabsPage from '@/components/Tabs';
-import CodeViewer from '@/components/CodeViewer';
+// import CodeViewer from '@/components/CodeViewer';/
 import OutputWindow from '@/components/OutputWindow';
 
 
