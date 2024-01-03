@@ -20,11 +20,17 @@ const presets: Presets = {
     files: files['react'],
 
   },
+  "react-ts": {
+    template: "react-ts",
+    dependencies: {},
+    externalResources: ["https://cdn.tailwindcss.com"],
+    files: files['react-ts'],
+  },
   "next": {
     template: "nextjs",
     dependencies: {},
     externalResources: ["https://cdn.tailwindcss.com"],
-    files: null,
+    files: files['next-ts'],
 
   },
   "framer-motion": {
@@ -55,19 +61,13 @@ const presets: Presets = {
     },
     externalResources: ["https://cdn.tailwindcss.com"],
     // files: files['@react-three'],
-    files: null,
+    files: files['@react-three'],
     
   },
   "typescript": {
     template: "vanilla-ts",
     dependencies: {},
     externalResources: [],
-    files: null,
-  },
-  "react-ts": {
-    template: "react-ts",
-    dependencies: {},
-    externalResources: ["https://cdn.tailwindcss.com"],
     files: null,
   },
 
@@ -104,14 +104,14 @@ const presets: Presets = {
     template: "static",
     dependencies: {},
     externalResources: [],
-    files: null,
+    files: files['html-css'],
   },
 
   "html-css-js": {
     template: "vanilla",
     dependencies: {},
     externalResources: ["https://code.jquery.com/jquery-3.7.1.min.js"],
-    files: null,
+    files: files['html-css-js'],
 
   }
 }

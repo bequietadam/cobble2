@@ -329,6 +329,48 @@ const filesReactThree = {
 };
 
 
+const filesHtmlCss = {
+  "/index.html": `<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <h1>Hello world</h1>
+</body>
+
+</html>`,
+  "/styles.css": ``,
+
+}
+
+const filesHtmlCssJs = {
+  "/index.html": `<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <h1>Hello world</h1>
+</body>
+
+<script src="/script.js"></script>
+
+</html>`,
+  "/styles.css": ``,
+  "/script.js": ``,
+
+}
+
+
 const presetFiles = {
   "react": filesReact,
   "react-ts": filesReact,
@@ -336,6 +378,8 @@ const presetFiles = {
   "next-ts": filesNext,
   "framer-motion": filesFramerMotion,
   "@react-three": filesReactThree,
+  "html-css": filesHtmlCss,
+  "html-css-js": filesHtmlCssJs,
 }
 
 export default presetFiles;
