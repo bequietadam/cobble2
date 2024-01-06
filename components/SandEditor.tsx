@@ -7,6 +7,7 @@ import presets from '@constants/presets';
 import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Card, CardBody, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
+import useWindowSize from '@hooks/useWindowSize';
 
 type SandLayoutProps = {
   preset: Preset;
@@ -29,13 +30,14 @@ export type CobbleServer = Cobble & {
 
 const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [title, setTitle] = useState<string>('');
-  const [newFileName, setNewFileName] = useState<string>('') // or string array
+  const [newFileName, setNewFileName] = useState<string>('');
   const [showNewFileInput, setShowNewFileInput] = useState(false);
 
-  const { dispatch, sandpack } = useSandpack();
-  const { files, addFile, activeFile, editorState, openFile } = sandpack;
+  const { sandpack } = useSandpack();
+  const { files, addFile, activeFile, openFile, status } = sandpack;
 
-  console.log(files)
+  const size = useWindowSize();
+
 
 
   const saveCobble = useCallback(async () => {
@@ -175,31 +177,33 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         </div>
       </div>
       <div className="grow pt-4 flex flex-col">
+        {status === 'initial' ? <p>loading...</p> : 
         <SandpackLayout
           style={{
-            height: '100%',
+            // height: !!size.height ? (size.height - 172) + 'px' : '100%',
             borderRadius: '14px',
+            borderWidth: 0,
           }}
         >
           <SandpackCodeEditor
             style={{
-              height: '100%',
+              height: !!size.height ? (size.height - 172) + 'px' : '100%',
             }}
             showTabs={true}
             // closableTabs={true}
             showInlineErrors={true}
             showLineNumbers={true}
-            wrapContent={true}
+            wrapContent={false}
 
           />
           <SandpackPreview
             style={{
-              height: '100%',
+              height: !!size.height ? (size.height - 172) + 'px' : '100%',
             }}
             showOpenInCodeSandbox={false}
             showRefreshButton={true}
           />
-        </SandpackLayout>
+        </SandpackLayout>}
       </div>
     </>
   )
