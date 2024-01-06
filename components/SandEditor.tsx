@@ -178,33 +178,34 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         </div>
       </div>
       <div className="grow pt-4 flex flex-col">
-        {!status || status === 'initial' ? <Loader /> : 
-        <SandpackLayout
-          style={{
-            // height: !!size.height ? (size.height - 172) + 'px' : '100%',
-            borderRadius: '14px',
-            borderWidth: 0,
-          }}
-        >
-          <SandpackCodeEditor
+        {!status || status === 'initial' ? <Loader /> :
+          <SandpackLayout
             style={{
-              height: !!size.height ? (size.height - 172) + 'px' : '100%',
+              // height: !!size.height ? (size.height - 172) + 'px' : '100%',
+              borderRadius: '14px',
+              borderWidth: 0,
             }}
-            showTabs={true}
-            // closableTabs={true}
-            showInlineErrors={true}
-            showLineNumbers={true}
-            wrapContent={false}
+          >
+            <SandpackCodeEditor
+              style={{
+                height: !!size.height ? (size.height - 172) + 'px' : '100%',
+              }}
+              showTabs={true}
+              // closableTabs={true}
+              showInlineErrors={true}
+              showLineNumbers={true}
+              wrapContent={false}
 
-          />
-          <SandpackPreview
-            style={{
-              height: !!size.height ? (size.height - 172) + 'px' : '100%',
-            }}
-            showOpenInCodeSandbox={false}
-            showRefreshButton={true}
-          />
-        </SandpackLayout>}
+            />
+            <SandpackPreview
+              style={{
+                height: !!size.height ? (size.height - 172) + 'px' : '100%',
+              }}
+              showOpenInCodeSandbox={false}
+              showRefreshButton={true}
+            />
+          </SandpackLayout>
+        }
       </div>
     </>
   )
@@ -239,7 +240,7 @@ export default function SandEditor() {
       customSetup={{
         dependencies: presets[preset].dependencies,
       }}
-      // files={presets[preset].files as SandpackFiles}
+      files={presets[preset].files as SandpackFiles}
       theme={nightOwl}
       template={presets[preset].template}
       options={{
