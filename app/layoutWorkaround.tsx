@@ -21,7 +21,7 @@ export default function Layout({
   return (
     <html lang="en" className='dark h-full'>
       <head>
-        <SandCss />
+        {/* <SandCss /> */}
       </head>
       <body className={inter.className + ' ' + 'h-full'}>
         <div className="w-full flex flex-col">

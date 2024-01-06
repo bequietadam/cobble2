@@ -17,17 +17,6 @@ const LanguageDropdown = ({ onSelect, selected }: LanguageDropdownProps) => {
   const options: Option[] = languageOptions.map(({ id, name }) => { return { id: id, name: name } })
 
 
-  // return (
-  //   <Select
-  //     placeholder={`Select language`}
-  //     options={options}
-  //     // styles={customStyles}
-  //     defaultValue={languageOptions[0].name}
-  //     onChange={(newValue: unknown) => onSelectChange(newValue)}
-  //   />
-  // );
-
-
   return (
     <Dropdown>
       <DropdownTrigger>

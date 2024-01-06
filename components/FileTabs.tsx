@@ -6,13 +6,13 @@ type File = {
   content: React.JSX.Element;
 }
 
-type FileGroupProps = {
+type FileTabsProps = {
   files: File[]
 
 }
 
 
-export default function FileGroup({ files }: FileGroupProps) {
+export default function FileTabs({ files }: FileTabsProps) {
 
 
   return (

@@ -6,6 +6,6 @@ export default function app() {
 
 
   return(
-    <h1>Welcome</h1>
+    <h1 className="mx-auto">Welcome</h1>
   )
 }

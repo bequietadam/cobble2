@@ -1,21 +1,17 @@
 'use client'
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Sandpack, SandpackCodeEditor, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
+import React, { useCallback, useState } from 'react';
+import { SandpackCodeEditor, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
 import PresetDropdown, { Preset } from '@components/PresetDropdown';
-import { Button, Card, CardBody, Input } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
 
 type SandLayoutProps = {
   preset: Preset;
-  // title: string;
-  // toSave: boolean;
-  // toSaveClear: (bool: boolean) => void;
-  // onChangeTitle: (title: string) => void;
   onChangePreset: (preset: unknown) => void;
 }
 
@@ -33,6 +29,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [title, setTitle] = useState<string>('');
   const [newFileName, setNewFileName] = useState<string>('');
   const [showNewFileInput, setShowNewFileInput] = useState(false);
+  const [error, setError] = useState('');
 
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, openFile, status } = sandpack;
@@ -42,30 +39,29 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 
 
   const saveCobble = useCallback(async () => {
-    // if ( !!toSave ) {
-    try {
-      let response = await fetch("http://localhost:3000/api/addCobble", {
-        method: "POST",
-        body: JSON.stringify({
-          title,
-          preset,
-          files,
-          activeFile,
-        }),
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Description-Type": "application/json",
-        },
-      });
-      response = await response.json();
-      // setTitle("");
-      // setError('')
-    } catch (errorMessage: any) {
-      // setError(errorMessage);
+    if (!!title) {
+      try {
+        let response = await fetch("http://localhost:3000/api/addCobble", {
+          method: "POST",
+          body: JSON.stringify({
+            title,
+            preset,
+            files,
+            activeFile,
+          }),
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Description-Type": "application/json",
+          },
+        });
+        response = await response.json();
+        setError('');
+      } catch (errorMessage: any) {
+        setError(errorMessage);
+      }
+    } else {
+      return setError("A title is required");
     }
-    // } else {
-    //   // return setError("All fields are required");
-    // }
   }, [activeFile, files, preset, title])
 
 
@@ -143,9 +139,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
                       opacity: {
                         duration: 0.3,
                       },
-                      // visibility: {
-                      //   delay: 0.5,
-                      // }
                     }
                   },
                 }}
@@ -165,12 +158,11 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             </AnimatePresence>
             <Button
               className="mr-6 px-6"
-              color="primary"
+              color="default"
               onClick={showNewFileInput ? saveNewFile : addNewFile}
               radius="full"
               variant="ghost"
               size="sm"
-            // disabled={saved.current}
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
             <PresetDropdown onSelect={onChangePreset} selected={preset} />
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
@@ -181,7 +173,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         {!status || status === 'initial' ? <Loader /> :
           <SandpackLayout
             style={{
-              // height: !!size.height ? (size.height - 172) + 'px' : '100%',
               borderRadius: '14px',
               borderWidth: 0,
             }}
@@ -217,12 +208,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 
 export default function SandEditor() {
   const [preset, setPreset] = useState<Preset>('react');
-  // const [toSave, setToSave] = useState(false);
-  // const saved = useRef(true);
-
-  // const toSaveClear = (boolean: boolean) => {
-  //   setToSave(boolean);
-  // }
 
 
   const onChangePreset = (newValue: unknown) => {

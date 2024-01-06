@@ -19,27 +19,6 @@ async function getCobbles() {
 }
 
 export default async function Cairn() {
-  // const [cobbles, setCobbles] = useState<CobbleServer[] | null>(null);
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/api/getCobbles')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setCobbles(data);
-  //       setIsLoading(false);
-  //   })
-  // }, [])
-
-
-  // if (isLoading) {
-  //   return (
-  //     <Spinner
-  //       color="default"
-  //       size="lg"
-  //     />
-  //   )
-  // }
   const cobbles: CobbleServer[] = await getCobbles();
 
   if (!cobbles.length) {

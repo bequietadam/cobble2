@@ -90,16 +90,11 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                       }}
                       layout
                     >
-                      {/* <div
-          className="flex w-full  px-2 justify-between items-center"
-        > */}
                       <h4 className="text-white/50 drop-shadow-sm hover:drop-shadow-md">{cobble.title}</h4>
                       <Chip
                         classNames={{
-                          // base: "bg-gradient-to-r from-indigo-900/30 to-pink-900/30 border-small border-white/10",
                           content: " text-tiny text-white/60",
                         }}
-                        // color="warning"
                         radius="full"
                         size="sm"
                         // startContent={ <presetIcon /> }
@@ -107,7 +102,6 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                       >
                         {cobble.preset}
                       </Chip>
-                      {/* </div> */}
 
                     </motion.div>
                   </Card>
