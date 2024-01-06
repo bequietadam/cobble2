@@ -6,6 +6,7 @@ import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
 import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Card, CardBody, Input } from '@nextui-org/react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type SandLayoutProps = {
   preset: Preset;
@@ -27,10 +28,14 @@ export type CobbleServer = Cobble & {
 }
 
 const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
-  const [title, setTitle] = useState<string>('new cobble')
+  const [title, setTitle] = useState<string>('');
+  const [newFileName, setNewFileName] = useState<string>('') // or string array
+  const [showNewFileInput, setShowNewFileInput] = useState(false);
 
-  const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, editorState } = sandpack;
+  const { dispatch, sandpack } = useSandpack();
+  const { files, addFile, activeFile, editorState, openFile } = sandpack;
+
+  console.log(files)
 
 
   const saveCobble = useCallback(async () => {
@@ -61,57 +66,113 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   }, [activeFile, files, preset, title])
 
 
+  const saveNewFile = () => {
+    if (!newFileName) {
+      setShowNewFileInput(false);
+      return;
+    }
+    setShowNewFileInput(false);
+    const newFilePath = `/${newFileName}`
+    addFile({
+      [newFilePath]: {
+        code: '',
+        hidden: false,
+        active: true,
+      }
+    });
+    openFile(newFilePath);
+    setNewFileName('');
+  }
 
+  const addNewFile = () => {
+    setNewFileName('');
+    setShowNewFileInput(true);
+  }
 
 
   return (
     <>
       <div>
-        <Card
-          className="bg-gradient-to-r from-primary-100"
-          radius="lg"
-          fullWidth={true}
-          isBlurred={true}
-
-        >
-          <CardBody>
-            <div className="flex">
-              <div className="flex w-auto items-center">
-                <Input
-                  color="primary"
-                  radius="full"
-                  size="lg"
-                  value={title}
-                  onValueChange={(title: string) => setTitle(title)}
-                />
+        <div className="flex">
+          <div className="flex w-auto items-center">
+            <Input
+              color="primary"
+              radius="full"
+              size="lg"
+              value={title}
+              placeholder="new cobble"
+              onValueChange={(title: string) => setTitle(title)}
+              endContent={
                 <Button
-                  className="ml-6"
+                  className="px-4"
                   color="primary"
                   // onClick={saveCobble}
                   radius="full"
                   variant="flat"
                   size="sm"
                 // disabled={saved.current}
-                >save</Button>
-                {/* <Button
-                className="ml-6"
-                color="primary"
-                onClick={() => setToSave(true)}
-                
-                radius="full"
-                variant="flat"
-                size="sm"
-              // disabled={saved.current}
-              >save</Button> */}
-              </div>
-              <div className="flex ml-auto items-center">
-                <PresetDropdown onSelect={onChangePreset} selected={preset} />
-                {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
-              </div>
-            </div>
-
-          </CardBody>
-        </Card>
+                >save cobble</Button>
+              }
+            />
+          </div>
+          <div className="flex ml-auto items-center">
+            <AnimatePresence initial={false} >
+              <motion.div
+                className="mr-3"
+                animate={showNewFileInput ? 'anim' : 'init'}
+                variants={{
+                  init: {
+                    opacity: 0,
+                    visibility: 'hidden',
+                    transition: {
+                      opacity: {
+                        duration: 0.3,
+                      },
+                      visibility: {
+                        delay: 0.5,
+                      }
+                    }
+                  },
+                  anim: {
+                    opacity: 1,
+                    visibility: 'visible',
+                    transition: {
+                      opacity: {
+                        duration: 0.3,
+                      },
+                      // visibility: {
+                      //   delay: 0.5,
+                      // }
+                    }
+                  },
+                }}
+              >
+                <Input
+                  className="text-default-500"
+                  color="default"
+                  radius="full"
+                  size="sm"
+                  value={newFileName}
+                  placeholder="newFileName.txt"
+                  onValueChange={(newName: string) => setNewFileName(newName)}
+                  variant="bordered"
+                  disabled={!showNewFileInput}
+                />
+              </motion.div>
+            </AnimatePresence>
+            <Button
+              className="mr-6 px-6"
+              color="primary"
+              onClick={showNewFileInput ? saveNewFile : addNewFile}
+              radius="full"
+              variant="ghost"
+              size="sm"
+            // disabled={saved.current}
+            >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
+            <PresetDropdown onSelect={onChangePreset} selected={preset} />
+            {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
+          </div>
+        </div>
       </div>
       <div className="grow pt-4 flex flex-col">
         <SandpackLayout
@@ -173,7 +234,7 @@ export default function SandEditor() {
       customSetup={{
         dependencies: presets[preset].dependencies,
       }}
-      files={presets[preset].files as SandpackFiles}
+      files={{}}
       theme={nightOwl}
       template={presets[preset].template}
       options={{
