@@ -8,6 +8,7 @@ import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Card, CardBody, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
+import Loader from './Loader';
 
 type SandLayoutProps = {
   preset: Preset;
@@ -177,7 +178,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         </div>
       </div>
       <div className="grow pt-4 flex flex-col">
-        {status === 'initial' ? <p>loading...</p> : 
+        {!status || status === 'initial' ? <Loader /> : 
         <SandpackLayout
           style={{
             // height: !!size.height ? (size.height - 172) + 'px' : '100%',
@@ -238,7 +239,7 @@ export default function SandEditor() {
       customSetup={{
         dependencies: presets[preset].dependencies,
       }}
-      files={{}}
+      // files={presets[preset].files as SandpackFiles}
       theme={nightOwl}
       template={presets[preset].template}
       options={{
