@@ -8,7 +8,7 @@ import { Spinner } from '@nextui-org/react';
 async function getCobbles() {
   try {
 
-    let responseCobbles = await fetch('http://localhost:3000/api/getCobbles');
+    let responseCobbles = await fetch(process.env.COBBLES_API_URL + "/api/getCobbles");
     let cobbles = await responseCobbles.json();
 
     return cobbles
