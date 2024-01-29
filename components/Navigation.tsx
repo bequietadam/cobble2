@@ -18,7 +18,7 @@ export default function Navigation() {
           <Link href="/">Home</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href="/sand">Editor</Link>
+          <Link href="/editor">Editor</Link>
         </NavbarItem>
         <NavbarItem>
           <Link href="/cairn">Collection</Link>

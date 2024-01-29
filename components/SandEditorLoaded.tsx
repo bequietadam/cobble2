@@ -11,7 +11,12 @@ import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
 import SandpackPreviewClient from './SandpackPreviewClient';
 
+type PageProps = {
+  cobble?: CobbleServer;
+}
+
 type SandLayoutProps = {
+  cobble?: CobbleServer;
   preset: Preset;
   onChangePreset: (preset: unknown) => void;
 }
@@ -26,16 +31,17 @@ export type CobbleServer = Cobble & {
   _id: string;
 }
 
-const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
-  const [title, setTitle] = useState<string>('');
+const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
+  const [title, setTitle] = useState<string>(!!cobble ? cobble.title : '');
   const [newFileName, setNewFileName] = useState<string>('');
   const [showNewFileInput, setShowNewFileInput] = useState(false);
   const [error, setError] = useState('');
 
   const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, openFile, status, } = sandpack;
+  const { files, addFile, activeFile, openFile, status, visibleFiles } = sandpack;
 
   const size = useWindowSize();
+  
 
 
   const saveCobble = useCallback(async () => {
@@ -164,7 +170,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               variant="ghost"
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
-            <PresetDropdown onSelect={onChangePreset} selected={preset} />
+            {/* <PresetDropdown onSelect={onChangePreset} selected={preset} /> */}
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
         </div>
@@ -178,15 +184,15 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               flexGrow: 1,
             }}
             // customSetup={{
-            //   dependencies: presets[preset].dependencies,
+            //   dependencies: !!cobble ? presets[cobble.preset].dependencies :  presets[preset].dependencies,
             // }}
-            files={presets[preset].files as SandpackFiles}
+            files={!!cobble ? cobble.files : presets[preset].files as SandpackFiles}
             theme={nightOwl}
-            template={presets[preset].template}
+            template={!!cobble ? presets[cobble.preset].template : presets[preset].template}
           // options={{
-          //   externalResources: presets[preset].externalResources,
-          //   // visibleFiles: ["/App.js", "/Button.js"],
-          //   // activeFile: presets[preset].activeFile,
+          //   externalResources: !!cobble ? presets[cobble.preset].externalResources : presets[preset].externalResources,
+          //   // visibleFiles: !!cobble ? cobble.visibleFiles : ["/App.js", "/Button.js"],
+          //   // activeFile: !!cobble ? cobble.activeFile : presets[preset].activeFile,
 
           // }}
           // autoSave='true'
@@ -229,12 +235,12 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 }
 
 
-export default function SandEditor() {
-  const [preset, setPreset] = useState<Preset>('react');
+export default function SandEditorLoaded({ cobble }: PageProps) {
+  const [preset, setPreset] = useState<Preset>(!!cobble ? cobble.preset : 'react');
 
+  console.log(cobble)
 
   const onChangePreset = (newValue: unknown) => {
-    // console.log(newValue)
     setPreset(newValue as Preset)
   }
 
@@ -247,22 +253,23 @@ export default function SandEditor() {
         flexGrow: 1,
       }}
       // customSetup={{
-      //   dependencies: presets[preset].dependencies,
+      //   dependencies: !!cobble ? presets[cobble.preset].dependencies :  presets[preset].dependencies,
       // }}
-      files={presets[preset].files as SandpackFiles}
+      files={!!cobble ? cobble.files : presets[preset].files as SandpackFiles}
       theme={nightOwl}
-      template={presets[preset].template}
+      template={!!cobble ? presets[cobble.preset].template : presets[preset].template}
     // options={{
-    //   externalResources: presets[preset].externalResources,
-    //   // visibleFiles: ["/App.js", "/Button.js"],
-    //   // activeFile: presets[preset].activeFile,
+    //   externalResources: !!cobble ? presets[cobble.preset].externalResources : presets[preset].externalResources,
+    //   // visibleFiles: !!cobble ? cobble.visibleFiles : ["/App.js", "/Button.js"],
+    //   // activeFile: !!cobble ? cobble.activeFile : presets[preset].activeFile,
 
     // }}
     // autoSave='true'
     >
       <SandLayout
+        cobble={cobble}
         onChangePreset={onChangePreset}
-        preset={preset}
+        preset={!!cobble ? cobble.preset : preset}
       />
     </SandpackProvider>
   )

@@ -18,7 +18,6 @@ const presets: Presets = {
     dependencies: {},
     externalResources: ["https://cdn.tailwindcss.com"],
     files: files['react'],
-
   },
   "react-ts": {
     template: "react-ts",
@@ -26,87 +25,74 @@ const presets: Presets = {
     externalResources: ["https://cdn.tailwindcss.com"],
     files: files['react-ts'],
   },
-  "next": {
+  // "next": {
+  //   template: "nextjs",
+  //   dependencies: {},
+  //   externalResources: ["https://cdn.tailwindcss.com"],
+  //   files: files['next'],
+  // },
+  "next-ts": {
     template: "nextjs",
     dependencies: {},
     externalResources: ["https://cdn.tailwindcss.com"],
     files: files['next-ts'],
-
-  },
-  "framer-motion": {
-    template: "react",
-    dependencies: {
-      'framer-motion': 'latest',
-      'styled-components': 'latest',
-    },
-    externalResources: ["https://cdn.tailwindcss.com"],
-    files: files['framer-motion'],
-
   },
   "styled-components": {
     template: "react",
+    dependencies: {},
+    externalResources: ["https://cdn.tailwindcss.com"],
+    files: files['styled-components'],
+  },
+  "styled-components-ts": {
+    template: "react",
+    dependencies: {},
+    externalResources: ["https://cdn.tailwindcss.com"],
+    files: files['styled-components-ts'],
+  },
+  "framer-motion": {
+    template: "react",
+    dependencies: {},
+    externalResources: ["https://cdn.tailwindcss.com"],
+    files: files['framer-motion'],
+  },
+  "framer-motion-ts": {
+    template: "react",
     dependencies: {
-      'styled-components': 'latest',
     },
     externalResources: ["https://cdn.tailwindcss.com"],
-    files: files['react'],
-
+    files: files['framer-motion-ts'],
   },
   "@react-three": {
     template: "react",
-    dependencies: {
-      "@react-three/drei": "latest",
-      "@react-three/fiber": "latest",
-      "three": "latest",
-    },
+    dependencies: {},
     externalResources: ["https://cdn.tailwindcss.com"],
-    // files: files['@react-three'],
     files: files['@react-three'],
-    
+  },
+  "@react-three-ts": {
+    template: "react",
+    dependencies: {},
+    externalResources: ["https://cdn.tailwindcss.com"],
+    files: files['@react-three-ts'],
+  },
+
+  "p5.js": {
+    template:"static",
+    dependencies: {},
+    externalResources: [],
+    files: files['p5.js'],
   },
   "typescript": {
     template: "vanilla-ts",
     dependencies: {},
     externalResources: [],
-    files: null,
+    files: files['typescript'],
   },
-
-  // "next-ts": {
-  //   template: "next-ts",
+  // "html-css": {
+  //   template: "static",
   //   dependencies: {},
-  //   externalResources: ["https://cdn.tailwindcss.com"],
-  //   files: filesReact,
-
+  //   externalResources: [],
+  //   files: files['html-css'],
   // },
-
-  "framer-motion-ts": {
-    template: "react-ts",
-    dependencies: {
-      'framer-motion': 'latest',
-      'styled-components': 'latest',
-    },
-    externalResources: ["https://cdn.tailwindcss.com"],
-    files: null,
-
-  },
-
-  "styled-components-ts": {
-    template: "react-ts",
-    dependencies: {
-      'styled-components': 'latest',
-    },
-    externalResources: ["https://cdn.tailwindcss.com"],
-    files: files['react'],
-
-  },
-
-  "html-css": {
-    template: "static",
-    dependencies: {},
-    externalResources: [],
-    files: files['html-css'],
-  },
-
   "html-css-js": {
     template: "vanilla",
     dependencies: {},

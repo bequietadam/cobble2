@@ -4,6 +4,7 @@ import React from 'react';
 import SandPreview from './SandPreview';
 import { CobbleServer } from './SandEditor';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 type CobbleListProps = {
   cobbles?: CobbleServer[];
@@ -12,7 +13,7 @@ type CobbleListProps = {
 
 export default function CobbleList({ cobbles }: CobbleListProps) {
 
-  const openCobble = () => {
+  const openCobble = (id: string) => {
 
   }
 
@@ -35,43 +36,46 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
 
   return (
     <>
-        {!!cobbles && (
-          <motion.div
-            variants={containerVariants}
-            initial="init"
-            animate="anim"
-            className="grid gap-6 grid-cols-3 md:grid-cols-2"
-          >
-            {cobbles.map((cobble, id) => {
+      {!!cobbles && (
+        <motion.div
+          variants={containerVariants}
+          initial="init"
+          animate="anim"
+          className="grid gap-6 grid-cols-3 md:grid-cols-2"
+        >
+          {cobbles.map((cobble, id) => {
 
-              const cardVariants = {
-                init: {
-                  opacity: 0,
-                  y: -100,
-                },
-                anim: {
-                  y: 0,
-                  opacity: 1,
-                  transition: {
-                    delay: id / 10,
-                  }
+            const cardVariants = {
+              init: {
+                opacity: 0,
+                y: -100,
+              },
+              anim: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  delay: id / 10,
                 }
               }
-              return (
-                <motion.div
-                  key={id + cobble.title}
-                  initial="init"
-                  animate="anim"
-                  variants={cardVariants}
-                  className="w-full"
-                >
-                  <Card
-                    className="border-none w-full"
+            }
+            return (
+              <motion.div
+                key={id + cobble.title}
+                initial="init"
+                animate="anim"
+                variants={cardVariants}
+                className="w-full"
+              >
+                <Card
+                  className="border-none w-full"
 
-                    isFooterBlurred={true}
-                    isPressable={true}
-                    onPress={openCobble}
-                    radius="lg"
+                  isFooterBlurred={true}
+                  isPressable={true}
+                  // onPress={openCobble(cobble._id)}
+                  radius="lg"
+                >
+                  <Link
+                    href={'/editor/' + cobble._id}
                   >
 
                     <SandPreview
@@ -104,12 +108,13 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                       </Chip>
 
                     </motion.div>
-                  </Card>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-        )}
+                  </Link>
+                </Card>
+              </motion.div>
+            )
+          })}
+        </motion.div>
+      )}
     </>
   )
 }

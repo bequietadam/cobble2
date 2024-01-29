@@ -3,23 +3,15 @@ import CobbleList from '@components/CobbleList';
 import { CobbleServer } from '@components/SandEditor';
 import { useEffect, useState } from 'react';
 import { Spinner } from '@nextui-org/react';
+import getCobbles from '@lib/getSondages';
 
 
-async function getCobbles() {
-  try {
 
-    let responseCobbles = await fetch(process.env.COBBLES_API_URL + "/api/getCobbles");
-    let cobbles = await responseCobbles.json();
-
-    return cobbles
-  } catch (e) {
-    console.error(e);
-    return []
-  }
-}
 
 export default async function Cairn() {
-  const cobbles: CobbleServer[] = await getCobbles();
+  const cobblesRaw: unknown[] = await getCobbles();
+
+  const cobbles: CobbleServer[] = JSON.parse(JSON.stringify(cobblesRaw));
 
   if (!cobbles.length) {
     return (
