@@ -12,11 +12,11 @@ import Loader from './Loader';
 import SandpackPreviewClient from './SandpackPreviewClient';
 
 type PageProps = {
-  cobble?: CobbleServer;
+  cobble: CobbleServer;
 }
 
 type SandLayoutProps = {
-  cobble?: CobbleServer;
+  cobble: CobbleServer;
   preset: Preset;
   onChangePreset: (preset: unknown) => void;
 }
@@ -32,22 +32,25 @@ export type CobbleServer = Cobble & {
 }
 
 const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
-  const [title, setTitle] = useState<string>(!!cobble ? cobble.title : '');
+  const [title, setTitle] = useState<string>(cobble.title);
   const [newFileName, setNewFileName] = useState<string>('');
   const [showNewFileInput, setShowNewFileInput] = useState(false);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const [saved, setSaved] = useState(false);
 
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, openFile, status, visibleFiles } = sandpack;
 
   const size = useWindowSize();
-  
+
 
 
   const saveCobble = useCallback(async () => {
     if (!!title) {
       try {
-        let response = await fetch(process.env.COBBLES_API_URL + "/api/addCobble", {
+        setSaved(true);
+        let response = await fetch("/api/editCobble?id=" + cobble._id, {
           method: "POST",
           body: JSON.stringify({
             title,
@@ -62,13 +65,17 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
         });
         response = await response.json();
         setError('');
+        setSaved(false);
+        setMessage('saved! :)')
+        setTimeout(() => setMessage(''), 2000);
       } catch (errorMessage: any) {
         setError(errorMessage);
+        setSaved(false);
       }
     } else {
       return setError("A title is required");
     }
-  }, [activeFile, files, preset, title])
+  }, [activeFile, files, preset, title, cobble._id])
 
 
   const saveNewFile = () => {
@@ -98,6 +105,8 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   return (
     <>
       <div>
+        {error ? <div className="alert-error">{error}</div> : null}
+        {message ? <div className="alert-message">{message}</div> : null}
         <div className="flex">
           <div className="flex w-auto items-center">
             <Input
@@ -111,11 +120,11 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
                 <Button
                   className="px-4"
                   color="primary"
-                  // onClick={saveCobble}
+                  onClick={saveCobble}
                   radius="full"
                   variant="flat"
                   size="sm"
-                // disabled={saved.current}
+                  disabled={saved}
                 >save cobble</Button>
               }
             />
@@ -184,17 +193,17 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               flexGrow: 1,
             }}
             // customSetup={{
-            //   dependencies: !!cobble ? presets[cobble.preset].dependencies :  presets[preset].dependencies,
+            //   dependencies:  presets[cobble.preset].dependencies,
             // }}
-            files={!!cobble ? cobble.files : presets[preset].files as SandpackFiles}
+            files={cobble.files}
             theme={nightOwl}
-            template={!!cobble ? presets[cobble.preset].template : presets[preset].template}
-          // options={{
-          //   externalResources: !!cobble ? presets[cobble.preset].externalResources : presets[preset].externalResources,
-          //   // visibleFiles: !!cobble ? cobble.visibleFiles : ["/App.js", "/Button.js"],
-          //   // activeFile: !!cobble ? cobble.activeFile : presets[preset].activeFile,
+            template={presets[cobble.preset].template}
+            options={{
+              externalResources: presets[cobble.preset].externalResources,
+              //   // visibleFiles: cobble.visibleFiles,
+              //   // activeFile: cobble.activeFile,
 
-          // }}
+            }}
           // autoSave='true'
           >
             <SandpackLayout
@@ -236,9 +245,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
 
 
 export default function SandEditorLoaded({ cobble }: PageProps) {
-  const [preset, setPreset] = useState<Preset>(!!cobble ? cobble.preset : 'react');
-
-  console.log(cobble)
+  const [preset, setPreset] = useState<Preset>(cobble.preset);
 
   const onChangePreset = (newValue: unknown) => {
     setPreset(newValue as Preset)
@@ -253,63 +260,25 @@ export default function SandEditorLoaded({ cobble }: PageProps) {
         flexGrow: 1,
       }}
       // customSetup={{
-      //   dependencies: !!cobble ? presets[cobble.preset].dependencies :  presets[preset].dependencies,
+      //   dependencies:  presets[cobble.preset].dependencies,
       // }}
-      files={!!cobble ? cobble.files : presets[preset].files as SandpackFiles}
+      files={cobble.files}
       theme={nightOwl}
-      template={!!cobble ? presets[cobble.preset].template : presets[preset].template}
-    // options={{
-    //   externalResources: !!cobble ? presets[cobble.preset].externalResources : presets[preset].externalResources,
-    //   // visibleFiles: !!cobble ? cobble.visibleFiles : ["/App.js", "/Button.js"],
-    //   // activeFile: !!cobble ? cobble.activeFile : presets[preset].activeFile,
+      template={presets[cobble.preset].template}
+      options={{
+        externalResources: presets[cobble.preset].externalResources,
+        //   // visibleFiles: cobble.visibleFiles,
+        //   // activeFile: cobble.activeFile,
 
-    // }}
+      }}
     // autoSave='true'
     >
       <SandLayout
         cobble={cobble}
         onChangePreset={onChangePreset}
-        preset={!!cobble ? cobble.preset : preset}
+        preset={cobble.preset}
       />
     </SandpackProvider>
   )
-
-
-  // return (
-  //   <>
-  //     <Sandpack
-  //       options={{
-  //         // classes: {
-  //         //   "sp-wrapper": "flex flex-1",
-  //         //   "sp-editor"
-  //         // },
-  //         //   externalResources: presets[preset].externalResources,
-  //         //   // visibleFiles: ["/App.js", "/Button.js"],
-  //         //   // activeFile: presets[preset].activeFile,
-  //       }}
-  //       customSetup={{
-  //         dependencies: presets[preset].dependencies,
-  //       }}
-  //       files={presets[preset].files as SandpackFiles}
-  //       theme={nightOwl}
-  //       template={presets[preset].template}
-
-  //     />
-  //     <style>{
-  //       `
-  //         .sp-wrapper {
-  //           display: flex;
-  //           flex: 1 1 0;
-  //         }
-  //         .sp-layout {
-  //           flex: 1 1 0;
-  //         }
-  //         .sp-stack {
-  //           height: auto !important;
-  //         }
-  //       `}
-  //     </style>
-  //   </>
-  // )
 
 }

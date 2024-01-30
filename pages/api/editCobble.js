@@ -11,7 +11,7 @@ export default async function editCobble(req, res) {
 
     const cobble = await db.collection("cobbles").updateOne(
       {
-        _id: ObjectId(id),
+        _id: new ObjectId(id),
       },
       {
         $set: {

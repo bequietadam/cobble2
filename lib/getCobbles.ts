@@ -3,7 +3,6 @@ import clientPromise from "./mongodb";
 
 
 
-
 export default async function getCobbles() {
   try {
     const client = await clientPromise;

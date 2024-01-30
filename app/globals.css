@@ -26,3 +26,18 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+
+.alert-error {
+  /* width: 100%; */
+  color: crimson;
+  position: fixed;
+  top: 68px;
+  left: 34px;
+}
+.alert-message {
+  /* width: 100%; */
+  color: teal;
+  position: fixed;
+  top: 68px;
+  left: 34px;
+}

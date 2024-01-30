@@ -1,6 +1,6 @@
 const filesReact = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App() {\n  return <h1>Hello React world</h1>\n}\n"
   },
   "/index.js": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -20,7 +20,7 @@ const filesReact = {
 
 const filesReactTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App(): JSX.Element {\n  return <h1>Hello React typed world</h1>\n}\n"
   },
   "/index.tsx": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -40,9 +40,9 @@ const filesReactTs = {
 };
 
 const filesNext = {
-  "/next.config.js": {
-    code: "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  reactStrictMode: true,\n  swcMinify: true,\n}\n\nmodule.exports = nextConfig\n"
-  },
+  // "/next.config.js": {
+  //   code: "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  reactStrictMode: true,\n  swcMinify: true,\n}\n\nmodule.exports = nextConfig\n"
+  // },
   "/package.json": {
     code: `{
       "scripts": {
@@ -65,7 +65,7 @@ const filesNext = {
     code: "import '../styles.css'\n\nexport default function MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />\n}"
   },
   "/pages/index.js": {
-    code: 'export default function Home({ data }) {\n  return (\n    <div>\n      <h1>Hello {data}</h1>\n    </div>\n  );\n}\n  \nexport function getServerSideProps() {\n  return {\n    props: { data: "world" },\n  }\n}\n'
+    code: 'export default function Home({ data }) {\n  return (\n    <div>\n      <h1>Hello Next {data}</h1>\n    </div>\n  );\n}\n  \nexport function getServerSideProps() {\n  return {\n    props: { data: "world" },\n  }\n}\n'
   },
   "/styles.css": {
     code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
@@ -74,7 +74,7 @@ const filesNext = {
 
 const filesNextTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App(): JSX.Element {\n  return <h1>Hello Next typed world</h1>\n}\n"
   },
   "/index.tsx": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -95,7 +95,7 @@ const filesNextTs = {
 
 const filesStyledComponents = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App() {\n  return <h1>Hello StyledComponents world</h1>\n}\n"
   },
   "/index.js": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -113,7 +113,7 @@ const filesStyledComponents = {
 
 const filesStyledComponentsTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App(): JSX.Element {\n  return <h1>Hello StyledComponents typed world</h1>\n}\n"
   },
   "/index.tsx": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -135,7 +135,7 @@ const filesStyledComponentsTs = {
 
 const filesFramerMotion = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App() {\n  return <h1>Hello Framer world</h1>\n}\n"
   },
   "/index.js": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -153,7 +153,7 @@ const filesFramerMotion = {
 
 const filesFramerMotionTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App(): JSX.Element {\n  return <h1>Hello Framer typed world</h1>\n}\n"
   },
   "/index.tsx": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -285,7 +285,7 @@ const filesFramerMotionTs = {
 
 const filesReactThree = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App() {\n  return <h1>Hello @React-Three world</h1>\n}\n"
   },
   "/index.js": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -303,7 +303,7 @@ const filesReactThree = {
 
 const filesReactThreeTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello world</h1>\n}\n"
+    code: "export default function App(): JSX.Element {\n  return <h1>Hello @React-Three typed world</h1>\n}\n"
   },
   "/index.tsx": {
     code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
@@ -332,7 +332,7 @@ const filesTypescript = {
     code: '<!DOCTYPE html>\n<html>\n\n<head>\n  <title>Parcel Sandbox</title>\n  <meta charset="UTF-8" />\n</head>\n\n<body>\n  <div id="app"></div>\n\n  <script src="index.ts">\n  </script>\n</body>\n\n</html>'
   },
   "/index.ts": {
-    code: 'import "./styles.css";\n\ndocument.getElementById("app").innerHTML = `\n<h1>Hello world</h1>\n`;\n'
+    code: 'import "./styles.css";\n\ndocument.getElementById("app").innerHTML = `\n<h1>Hello TypeScript world</h1>\n`;\n'
   },
   "/package.json": {
     code: '{\n  "dependencies": {},\n  "devDependencies": {\n    "typescript": "^4.0.0"\n  },\n  "main": "/index.ts"\n}'
@@ -541,7 +541,7 @@ const filesHtmlCssJs = {
     { code: '<!DOCTYPE html>\n<html>\n\n<head>\n  <title>Parcel Sandbox</title>\n  <meta charset="UTF-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n</head>\n\n<body>\n  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>\n  <div id="app"></div>\n\n  <script src="index.js"></script>\n</body>\n\n</html>' },
 
   "/index.js":
-    { code: 'import "./styles.css";\n\ndocument.getElementById("app").innerHTML = `\n<h1>Hello world</h1>\n`;\n' },
+    { code: 'import "./styles.css";\n\ndocument.getElementById("app").innerHTML = `\n<h1>Hello HTML, CSS & JS world</h1>\n`;\n' },
 
   "/package.json":
     { code: '{\n  "dependencies": {},\n  "main": "/index.js",\n  "devDependencies": {}\n}' },

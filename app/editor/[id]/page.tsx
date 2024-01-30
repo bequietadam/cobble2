@@ -1,6 +1,6 @@
 import SandEditor, { CobbleServer } from '@components/SandEditor';
 import SandEditorLoaded from '@components/SandEditorLoaded';
-import getCobble from '@lib/getSondage';
+import getCobble from '@lib/getCobble';
 
 type PageProps = {
   params: {

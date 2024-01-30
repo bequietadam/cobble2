@@ -3,7 +3,7 @@ import CobbleList from '@components/CobbleList';
 import { CobbleServer } from '@components/SandEditor';
 import { useEffect, useState } from 'react';
 import { Spinner } from '@nextui-org/react';
-import getCobbles from '@lib/getSondages';
+import getCobbles from '@lib/getCobbles';
 
 
 

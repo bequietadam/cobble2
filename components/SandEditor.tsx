@@ -11,6 +11,10 @@ import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
 import SandpackPreviewClient from './SandpackPreviewClient';
 
+// type PageProps = {
+//   addCobble:(cobble: Cobble) => Promise<void>;
+// }
+
 type SandLayoutProps = {
   preset: Preset;
   onChangePreset: (preset: unknown) => void;
@@ -31,6 +35,8 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [newFileName, setNewFileName] = useState<string>('');
   const [showNewFileInput, setShowNewFileInput] = useState(false);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const [saved, setSaved] = useState(false);
 
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, openFile, status, } = sandpack;
@@ -38,10 +44,12 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const size = useWindowSize();
 
 
+
   const saveCobble = useCallback(async () => {
     if (!!title) {
       try {
-        let response = await fetch(process.env.COBBLES_API_URL + "/api/addCobble", {
+        setSaved(true);
+        let response = await fetch("/api/addCobble", {
           method: "POST",
           body: JSON.stringify({
             title,
@@ -54,11 +62,24 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             "Description-Type": "application/json",
           },
         });
-        response = await response.json();
+        let savedCobble = await response.json();
+        console.log(savedCobble)
         setError('');
+        setSaved(false);
+        setMessage('saved! :)')
+        setTimeout(() => setMessage(''), 2000);
       } catch (errorMessage: any) {
         setError(errorMessage);
+        setSaved(false);
       }
+      // const newCobble = {
+      //   title,
+      //   preset,
+      //   files,
+      //   activeFile,
+      // }
+      // const response = await addCobble(newCobble);
+      // console.log(response);
     } else {
       return setError("A title is required");
     }
@@ -92,6 +113,8 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   return (
     <>
       <div>
+        {error ? <div className="alert-error">{error}</div> : null}
+        {message ? <div className="alert-message">{message}</div> : null}
         <div className="flex">
           <div className="flex w-auto items-center">
             <Input
@@ -105,11 +128,11 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
                 <Button
                   className="px-4"
                   color="primary"
-                  // onClick={saveCobble}
+                  onClick={saveCobble}
                   radius="full"
                   variant="flat"
                   size="sm"
-                // disabled={saved.current}
+                  disabled={saved}
                 >save cobble</Button>
               }
             />
@@ -183,12 +206,12 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             files={presets[preset].files as SandpackFiles}
             theme={nightOwl}
             template={presets[preset].template}
-          // options={{
-          //   externalResources: presets[preset].externalResources,
-          //   // visibleFiles: ["/App.js", "/Button.js"],
-          //   // activeFile: presets[preset].activeFile,
+            options={{
+              externalResources: presets[preset].externalResources,
+              //   // visibleFiles: ["/App.js", "/Button.js"],
+              //   // activeFile: presets[preset].activeFile,
 
-          // }}
+            }}
           // autoSave='true'
           >
             <SandpackLayout
@@ -252,12 +275,12 @@ export default function SandEditor() {
       files={presets[preset].files as SandpackFiles}
       theme={nightOwl}
       template={presets[preset].template}
-    // options={{
-    //   externalResources: presets[preset].externalResources,
-    //   // visibleFiles: ["/App.js", "/Button.js"],
-    //   // activeFile: presets[preset].activeFile,
+      options={{
+        externalResources: presets[preset].externalResources,
+        //   // visibleFiles: ["/App.js", "/Button.js"],
+        //   // activeFile: presets[preset].activeFile,
 
-    // }}
+      }}
     // autoSave='true'
     >
       <SandLayout
