@@ -32,7 +32,7 @@ const presets: Presets = {
   //   files: files['next'],
   // },
   "next-ts": {
-    template: "nextjs",
+    template: "react-ts",
     dependencies: {},
     externalResources: ["https://cdn.tailwindcss.com"],
     files: files['next-ts'],
@@ -44,7 +44,7 @@ const presets: Presets = {
     files: files['styled-components'],
   },
   "styled-components-ts": {
-    template: "react",
+    template: "react-ts",
     dependencies: {},
     externalResources: ["https://cdn.tailwindcss.com"],
     files: files['styled-components-ts'],
@@ -56,7 +56,7 @@ const presets: Presets = {
     files: files['framer-motion'],
   },
   "framer-motion-ts": {
-    template: "react",
+    template: "react-ts",
     dependencies: {
     },
     externalResources: ["https://cdn.tailwindcss.com"],
@@ -69,18 +69,18 @@ const presets: Presets = {
     files: files['@react-three'],
   },
   "@react-three-ts": {
-    template: "react",
+    template: "react-ts",
     dependencies: {},
     externalResources: ["https://cdn.tailwindcss.com"],
     files: files['@react-three-ts'],
   },
 
-  "p5.js": {
-    template:"static",
-    dependencies: {},
-    externalResources: [],
-    files: files['p5.js'],
-  },
+  // "p5.js": {
+  //   template:"static",
+  //   dependencies: {},
+  //   externalResources: [],
+  //   files: files['p5.js'],
+  // },
   "typescript": {
     template: "vanilla-ts",
     dependencies: {},

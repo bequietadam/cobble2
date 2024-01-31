@@ -1,41 +1,155 @@
 const filesReact = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello React world</h1>\n}\n"
+    code:
+`export default function App() {
+  return <h1>Hello React world</h1>
+}
+`
   },
   "/index.js": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-scripts": "^5.0.0"\n  },\n  "main": "/index.js",\n  "devDependencies": {}\n}',
+    code:
+`{
+  "dependencies": {
+  "react": "^18.0.0",
+  "react-dom": "^18.0.0",
+  "react-scripts": "^5.0.0"
+},
+"main": "/index.js",
+"devDependencies": {}
+}`,
     // visible: false,
     // readonly: true,
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 15rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 15rem;
+}
+`
   },
 };
 
 const filesReactTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello React typed world</h1>\n}\n"
+    code:
+`export default function App(): JSX.Element {
+  return <h1>Hello React typed world</h1>
+}`
   },
   "/index.tsx": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-scripts": "^4.0.0"\n  },\n  "devDependencies": {\n    "@types/react": "^18.0.0",\n    "@types/react-dom": "^18.0.0",\n    "typescript": "^4.0.0"\n  },\n  "main": "/index.tsx"\n}'
+    code:
+`{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^4.0.0"
+  },
+  "main": "/index.tsx"
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`,
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 1.5rem;
+}`
   },
   "/tsconfig.json": {
-    code: '{\n  "include": [\n    "./**/*"\n  ],\n  "compilerOptions": {\n    "strict": true,\n    "esModuleInterop": true,\n    "lib": [ "dom", "es2015" ],\n    "jsx": "react-jsx"\n  }\n}'
+    code:
+`{ 
+  "include": [
+      "./**/*"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": [ "dom", "es2015" ],
+    "jsx": "react-jsx"
+  }
+}`
   },
 };
 
@@ -74,251 +188,565 @@ const filesNext = {
 
 const filesNextTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello Next typed world</h1>\n}\n"
+    code:
+`export default function App(): JSX.Element {
+  return <h1>Hello Next typed world</h1>
+}`
   },
   "/index.tsx": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);`,
+
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "next": "latest",\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-scripts": "^4.0.0",\n    "framer-motion": "latest",\n    "styled-components": "latest"\n  },\n  "devDependencies": {\n    "@types/react": "^18.0.0",\n    "@types/react-dom": "^18.0.0",\n    "@types/next": "latest",\n    "@types/node": "latest",\n    "typescript": "^4.0.0"\n  },\n  "main": "/index.tsx"\n}'
+    code:
+`{
+  "dependencies": {
+    "next": "latest",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^4.0.0",
+    "framer-motion": "latest",
+    "styled-components": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/next": "latest",
+    "@types/node": "latest",
+    "typescript": "^4.0.0"
+  },
+  "main": "/index.tsx"
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+h1 {
+  font-size: 1.5rem;
+}`
   },
   "/tsconfig.json": {
-    code: '{\n  "include": [\n    "./**/*"\n  ],\n  "compilerOptions": {\n    "strict": true,\n    "esModuleInterop": true,\n    "lib": [ "dom", "es2015" ],\n    "jsx": "react-jsx"\n  }\n}'
+    code:
+`{
+  "include": [
+    "./**/*"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": [ "dom", "es2015" ],
+    "jsx": "react-jsx"
+  }
+}`
   },
 };
 
 const filesStyledComponents = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello StyledComponents world</h1>\n}\n"
+    code:
+`export default function App() {
+  return <h1>Hello StyledComponents world</h1>
+}`
   },
   "/index.js": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+  <App />
+</StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-scripts": "^5.0.0",\n    "styled-components": "latest"\n  },\n  "main": "/index.js",\n  "devDependencies": {}\n}'
+    code:
+`{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "styled-components": "latest"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 1.5rem;
+}`
   },
 };
 
 const filesStyledComponentsTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello StyledComponents typed world</h1>\n}\n"
+    code:
+`export default function App(): JSX.Element {
+  return <h1>Hello StyledComponents typed world</h1>
+}
+`
   },
   "/index.tsx": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-scripts": "^4.0.0"\n  },\n    "styled-components": "latest"\n  },\n  "devDependencies": {\n    "@types/react": "^18.0.0",\n    "@types/react-dom": "^18.0.0",\n    "typescript": "^4.0.0"\n  },\n  "main": "/index.tsx"\n}'
+    code:
+`{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^4.0.0",
+    "styled-components": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^4.0.0"
+  },
+  "main": "/index.tsx"
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 1.5rem;
+}`
   },
   "/tsconfig.json": {
-    code: '{\n  "include": [\n    "./**/*"\n  ],\n  "compilerOptions": {\n    "strict": true,\n    "esModuleInterop": true,\n    "lib": [ "dom", "es2015" ],\n    "jsx": "react-jsx"\n  }\n}'
+    code:
+    `{
+      "include": [
+        "./**/*"
+      ],
+      "compilerOptions": {
+        "strict": true,
+        "esModuleInterop": true,
+        "lib": [ "dom", "es2015" ],
+        "jsx": "react-jsx"
+      }
+    }`
   },
 };
 
 
 const filesFramerMotion = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello Framer world</h1>\n}\n"
+    code:
+`export default function App() {
+  return <h1>Hello Framer world</h1>
+}`
   },
   "/index.js": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+import App from "./App";
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-scripts": "^5.0.0",\n    "framer-motion": "latest",\n    "styled-components": "latest"\n  },\n  "main": "/index.js",\n  "devDependencies": {}\n}'
+    code:
+`{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "framer-motion": "latest",
+    "styled-components": "latest"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 1.5rem;
+}`
   },
 };
 
 const filesFramerMotionTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello Framer typed world</h1>\n}\n"
+    code:
+`export default function App(): JSX.Element {
+  return <h1>Hello Framer Motion typed world</h1>
+}
+`
   },
   "/index.tsx": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+import App from "./App";
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-scripts": "^4.0.0"\n  },\n    "framer-motion": "latest",\n    "styled-components": "latest"\n  },\n  "devDependencies": {\n    "@types/react": "^18.0.0",\n    "@types/react-dom": "^18.0.0",\n    "typescript": "^4.0.0"\n  },\n  "main": "/index.tsx"\n}'
+    code:
+`{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^4.0.0",
+    "framer-motion": "latest",
+    "styled-components": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^4.0.0"
+  },
+  "main": "/index.tsx"
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 1.5rem;
+}`
   },
   "/tsconfig.json": {
-    code: '{\n  "include": [\n    "./**/*"\n  ],\n  "compilerOptions": {\n    "strict": true,\n    "esModuleInterop": true,\n    "lib": [ "dom", "es2015" ],\n    "jsx": "react-jsx"\n  }\n}'
+    code:
+`{
+  "include": [
+    "./**/*"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": [ "dom", "es2015" ],
+    "jsx": "react-jsx"
+  }
+}`
   },
 };
 
 // const filesFramerMotion00 = {
-//   "App.js": `import { motion } from "framer-motion"
-
-//   import "./App.css"
-//   // import Logo from "./Logo"
-
-//   function App() {
-//       const colors = {
-//           motionMagenta: "#f08",
-//           motionBlue: "#05f",
-//           motionPurple: "#70f",
-//       }
-
-//       return (
-//           <div className="App">
-//               <header className="App-header">
-//                 {/* <Logo className="App-logo" /> */}
-//                   <motion.p
-//                       initial={{ opacity: 1 }}
-//                       animate={{ opacity: 0 }}
-//                       transition={{
-//                           delay: 4,
-//                           duration: 2,
-//                       }}
-//                   >
-//                       Edit <code>App.js</code> and save to reload.
-//                   </motion.p>
-//                   <a
-//                       className="App-link"
-//                       href="https://react.dev/"
-//                       target="_blank"
-//                       rel="noopener noreferrer"
-//                   >
-//                       Learn React
-//                   </a>
-//                   <motion.a
-//                       style={{
-//                           background: \`linear-gradient(to right,
-//                             \${colors.motionBlue} 20%,
-//                             \${colors.motionMagenta}, 
-//                             \${colors.motionPurple})\`,
-//                           WebkitBackgroundClip: "text",
-//                           WebkitTextFillColor: "transparent",
-//                           textDecorationColor: colors.motionPurple,
-//                           marginTop: 5,
-//                       }}
-//                       href="https://www.framer.com/motion/"
-//                       target="_blank"
-//                       initial={{ opacity: 0 }}
-//                       animate={{ opacity: 1 }}
-//                       transition={{
-//                           delay: 4,
-//                           duration: 2,
-//                       }}
-//                   >
-//                       & Framer Motion
-//                   </motion.a>
-//               </header>
-//           </div>
-//       )
-//   }
-
-//   export default App`,
-//   "App.css": `.App {
-//     text-align: center;
-// }
-
-// .App-logo {
-//     height: 40vmin;
-//     pointer-events: none;
-// }
-
-// @media (prefers-reduced-motion: no-preference) {
-//     .App-logo {
-//         animation: App-logo-spin infinite 20s linear;
-//     }
-// }
-
-// svg.App-logo path {
-//     fill: transparent;
-//     stroke-width: 21.55;
-//     stroke-linecap: round;
-// }
-
-// .App-header {
-//     background-color: #282c34;
-//     min-height: 100vh;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: calc(10px + 2vmin);
-//     color: white;
-// }
-
-// .App-link {
-//     color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//     from {
-//         transform: rotate(0deg);
-//     }
-//     to {
-//         transform: rotate(360deg);
-//     }
-// }
-// `
 // }
 
 
 const filesReactThree = {
   "/App.js": {
-    code: "export default function App() {\n  return <h1>Hello @React-Three world</h1>\n}\n"
+    code:
+`export default function App() {
+  return <h1>Hello @React-Three world</h1>
+}`
   },
   "/index.js": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+  <App />
+  </StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-postprocessing": "1.4.0",\n    "react-scripts": "^5.0.0",\n    "@react-three/drei": "latest",\n    "@react-three/fiber": "latest",\n    "three": "latest"\n  },\n  "main": "/inex.js",\n  "devDependencies": {}\n}'
+    code:
+`{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-postprocessing": "1.4.0",
+    "react-scripts": "^5.0.0",
+    "@react-three/drei": "latest",
+    "@react-three/fiber": "latest",
+    "three": "latest"
+  },
+  "main": "/inex.js",
+  "devDependencies": {}
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 1.5rem;
+}`
   },
 };
 
 const filesReactThreeTs = {
   "/App.tsx": {
-    code: "export default function App(): JSX.Element {\n  return <h1>Hello @React-Three typed world</h1>\n}\n"
+    code:
+`export default function App(): JSX.Element {
+  return <h1>Hello @React-Three typed world</h1>
+}`
   },
   "/index.tsx": {
-    code: 'import React, { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport "./styles.css";\n\nimport App from "./App";\n\nconst root = createRoot(document.getElementById("root"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'
+    code:
+`import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {\n    "react": "^18.0.0",\n    "react-dom": "^18.0.0",\n    "react-postprocessing": "1.4.0",\n    "react-scripts": "^4.0.0",\n    "@react-three/drei": "latest",\n    "@react-three/fiber": "latest",\n    "three": "latest"\n  },\n  "devDependencies": {\n    "@types/react": "^18.0.0",\n    "@types/react-dom": "^18.0.0",\n    "typescript": "^4.0.0"\n  },\n  "main": "/index.tsx"\n}'
+    code:
+`{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-postprocessing": "1.4.0",
+    "react-scripts": "^4.0.0",
+    "@react-three/drei": "latest",
+    "@react-three/fiber": "latest",
+    "three": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^4.0.0"
+  },
+  "main": "/index.tsx"
+}`
   },
   "/public/index.html": {
-    code: '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>'
+    code:
+`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+h1 {
+  font-size: 1.5rem;
+}`
   },
   "/tsconfig.json": {
-    code: '{\n  "include": [\n    "./**/*"\n  ],\n  "compilerOptions": {\n    "strict": true,\n    "esModuleInterop": true,\n    "lib": [ "dom", "es2015" ],\n    "jsx": "react-jsx"\n  }\n}'
+    code:
+`{
+  "include": [
+    "./**/*"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": [ "dom", "es2015" ],
+    "jsx": "react-jsx"
+  }
+}`
   },
 };
 
@@ -329,19 +757,72 @@ const filesP5js = {
 
 const filesTypescript = {
   "/index.html": {
-    code: '<!DOCTYPE html>\n<html>\n\n<head>\n  <title>Parcel Sandbox</title>\n  <meta charset="UTF-8" />\n</head>\n\n<body>\n  <div id="app"></div>\n\n  <script src="index.ts">\n  </script>\n</body>\n\n</html>'
+    code:
+`<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script src="index.ts"></script>
+</body>
+</html>`
   },
   "/index.ts": {
-    code: 'import "./styles.css";\n\ndocument.getElementById("app").innerHTML = `\n<h1>Hello TypeScript world</h1>\n`;\n'
+    code:
+`import "./styles.css";
+document.getElementById("app").innerHTML = '<h1>Hello TypeScript world</h1>';`
   },
   "/package.json": {
-    code: '{\n  "dependencies": {},\n  "devDependencies": {\n    "typescript": "^4.0.0"\n  },\n  "main": "/index.ts"\n}'
+    code:
+`{
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "main": "/index.ts"
+}`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+h1 {
+  font-size: 1.5rem;
+}`
   },
   "/tsconfig.json": {
-    code: '{\n  "compilerOptions": {\n    "strict": true,\n    "module": "commonjs",\n    "jsx": "preserve",\n    "esModuleInterop": true,\n    "sourceMap": true,\n    "allowJs": true,\n    "lib": [\n      "es6",\n      "dom"\n    ],\n    "rootDir": "src",\n    "moduleResolution": "node"\n  }\n}'
+    code:
+`{
+  "compilerOptions": {
+    "strict": true,
+    "module": "commonjs",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "rootDir": "src",
+    "moduleResolution": "node"
+  }
+}`
   },
 };
 
@@ -537,17 +1018,54 @@ const filesTypescript = {
 // }
 
 const filesHtmlCssJs = {
-  "/index.html":
-    { code: '<!DOCTYPE html>\n<html>\n\n<head>\n  <title>Parcel Sandbox</title>\n  <meta charset="UTF-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n</head>\n\n<body>\n  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>\n  <div id="app"></div>\n\n  <script src="index.js"></script>\n</body>\n\n</html>' },
+  "/index.html": {
+    code:
+`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <div id="app"></div>
+    
+    <script src="index.js"></script>
+  </body>
+</html>`
+    },
 
-  "/index.js":
-    { code: 'import "./styles.css";\n\ndocument.getElementById("app").innerHTML = `\n<h1>Hello HTML, CSS & JS world</h1>\n`;\n' },
-
-  "/package.json":
-    { code: '{\n  "dependencies": {},\n  "main": "/index.js",\n  "devDependencies": {}\n}' },
-
-  "/styles.css":
-    { code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}" },
+  "/index.js": {
+    code:
+`import "./styles.css";
+document.getElementById("app").innerHTML = '<h1>Hello HTML, CSS & JS world</h1>';`
+    },
+  "/package.json": {
+    code:
+`{
+  "dependencies": {},
+  "main": "/index.js",
+  "devDependencies": {}
+}`
+    },
+  "/styles.css": {
+    code:
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+h1 {
+  font-size: 1.5rem;
+}`
+   },
 
 }
 
@@ -577,7 +1095,7 @@ const filesHtmlCssJs = {
 const presetFiles = {
   "react": filesReact,
   "react-ts": filesReactTs,
-  // "next": filesNext,
+  "next": filesNext,
   "next-ts": filesNextTs,
   "styled-components": filesStyledComponents,
   "styled-components-ts": filesStyledComponentsTs,
