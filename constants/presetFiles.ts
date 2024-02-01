@@ -154,39 +154,92 @@ h1 {
 };
 
 const filesNext = {
-  // "/next.config.js": {
-  //   code: "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  reactStrictMode: true,\n  swcMinify: true,\n}\n\nmodule.exports = nextConfig\n"
-  // },
+  "/next.config.js": {
+    code:
+`/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+}
+
+module.exports = nextConfig
+`
+  },
   "/package.json": {
-    code: `{
-      "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-      },
-      "dependencies": {
-        "next": "latest",
-        "react": "latest",
-        "react-dom": "latest",
-        "framer-motion": "latest",
-        "styled-components": "latest"
-      },
-      "devDependencies": {},
-      "main": "/pages/index.js",
-    }`
+    code:
+`{
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "framer-motion": "latest",
+    "styled-components": "latest"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "devDependencies": {},
+  "main": "/pages/index.js"
+}`
   },
   "/pages/_app.js": {
-    code: "import '../styles.css'\n\nexport default function MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />\n}"
+    code:
+  `import '../styles.css'
+  
+  export default function MyApp({ Component, pageProps }) {
+    return <Component {...pageProps} />
+}`
   },
   "/pages/index.js": {
-    code: 'export default function Home({ data }) {\n  return (\n    <div>\n      <h1>Hello Next {data}</h1>\n    </div>\n  );\n}\n  \nexport function getServerSideProps() {\n  return {\n    props: { data: "world" },\n  }\n}\n'
+    code:
+`export default function Home({ data }) {
+  return (
+    <div>
+      <h1>Hello Next {data}</h1>
+    </div>
+    );
+  }
+  
+  export function getServerSideProps() {
+    return {
+      props: { data: "world" },
+    }
+  }`
   },
   "/styles.css": {
-    code: "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+    code: 
+`body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+h1 {
+  font-size: 1.5rem;
+}`
   },
 };
 
 const filesNextTs = {
+  "/next.config.js": {
+    code:
+`/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+}
+
+module.exports = nextConfig
+`
+  },
   "/App.tsx": {
     code:
 `export default function App(): JSX.Element {
@@ -219,6 +272,11 @@ root.render(
     "react-scripts": "^4.0.0",
     "framer-motion": "latest",
     "styled-components": "latest"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

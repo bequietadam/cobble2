@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useState } from 'react';
-import { Sandpack, SandpackCodeEditor, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
+import { SandpackCodeEditor, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
@@ -9,7 +9,6 @@ import { Button, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
-import SandpackPreviewClient from './SandpackPreviewClient';
 
 // type PageProps = {
 //   addCobble:(cobble: Cobble) => Promise<void>;
@@ -63,7 +62,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           },
         });
         let savedCobble = await response.json();
-        console.log(savedCobble)
         setError('');
         setSaved(false);
         setMessage('saved! :)')
@@ -72,14 +70,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         setError(errorMessage);
         setSaved(false);
       }
-      // const newCobble = {
-      //   title,
-      //   preset,
-      //   files,
-      //   activeFile,
-      // }
-      // const response = await addCobble(newCobble);
-      // console.log(response);
     } else {
       return setError("A title is required");
     }
@@ -239,7 +229,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               // showRefreshButton={true}
               // showRestartButton={true}
               />
-              {/* <SandpackPreviewClient /> */}
             </SandpackLayout>
           </SandpackProvider>
         }
@@ -257,7 +246,6 @@ export default function SandEditor() {
 
 
   const onChangePreset = (newValue: unknown) => {
-    // console.log(newValue)
     setPreset(newValue as Preset)
   }
 

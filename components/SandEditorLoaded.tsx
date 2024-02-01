@@ -9,7 +9,6 @@ import { Button, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
-import SandpackPreviewClient from './SandpackPreviewClient';
 
 type PageProps = {
   cobble: CobbleServer;
@@ -231,7 +230,6 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               // showRefreshButton={true}
               // showRestartButton={true}
               />
-              {/* <SandpackPreviewClient /> */}
             </SandpackLayout>
           </SandpackProvider>
         }
