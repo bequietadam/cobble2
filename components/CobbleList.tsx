@@ -16,16 +16,22 @@ type CobbleListProps = {
 export default function CobbleList({ cobbles }: CobbleListProps) {
   const { user, isLoaded } = useUser();
 
-  const deleteCobble = async (id: string) => {
+  const onClickDeleteCobble = async (id: string) => {
     try {
-      let response = await fetch('/api/deleteCobble?id=' + id, {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-      });
-      response = await response.json();
+      // let response = await fetch('/api/deleteCobble?id=' + id, {
+      //   method: "POST",
+      //   headers: {
+      //     Accept: "application/json, text/plain, */*",
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      // response = await response.json();
+
+      // console.log(response);
+
+      let response: unknown = await deleteCobble(id)
+
+      response = JSON.parse(JSON.stringify(response))
 
       console.log(response);
 
@@ -127,7 +133,7 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                       <Button
                         className="px-4 w-full mt-auto"
                         color="danger"
-                        onClick={() => deleteCobble(cobble._id)}
+                        onClick={() => onClickDeleteCobble(cobble._id)}
                         radius="full"
                         variant="ghost"
                         size="sm"

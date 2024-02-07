@@ -1,5 +1,5 @@
+"use sever"
 import clientPromise from "./mongodb";
-
 
 
 
