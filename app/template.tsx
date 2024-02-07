@@ -1,4 +1,4 @@
-'use client'
+
 import Navigation from '@components/Navigation';
 // import ThemeDropdown from '@components/ThemeDropdown';
 // import { MonacoTheme } from '@constants/monacoThemes';
@@ -41,7 +41,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           pauseOnHover
         /> */}
       <Navigation />
-      <div className="p-4 grow flex flex-col">
+      <div className="p-4 grow flex flex-col justify-center items-stretch">
         {children}
       </div>
     </div>

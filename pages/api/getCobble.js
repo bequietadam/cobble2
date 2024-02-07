@@ -8,7 +8,7 @@ export default async function getCobble(req, res) {
     const { id } = req.query;
 
     const cobble = await db.collection("cobbles").findOne({
-      _id: ObjectId(id),
+      _id: new ObjectId(id),
     });
 
     res.json(cobble)

@@ -9,6 +9,7 @@ import { Button, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
+import { useUser } from '@clerk/nextjs';
 
 type PageProps = {
   cobble: CobbleServer;
@@ -42,6 +43,9 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   const { files, addFile, activeFile, openFile, status, visibleFiles } = sandpack;
 
   const size = useWindowSize();
+
+  
+  const {user, isLoaded} = useUser();
 
 
 
@@ -115,7 +119,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               value={title}
               placeholder="new cobble"
               onValueChange={(title: string) => setTitle(title)}
-              endContent={
+              endContent={!!isLoaded && !!user && 
                 <Button
                   className="px-4"
                   color="primary"

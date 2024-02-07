@@ -1,4 +1,6 @@
 import './globals.css'
+import { ClerkProvider } from '@clerk/nextjs';
+import { dark } from '@clerk/themes';
 import { Inter } from 'next/font/google'
 import { Providers } from './providers'
 import SandCss from '@components/SandCss'
@@ -16,15 +18,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='dark h-full'>
-    <head>
-      {/* <SandCss /> */}
-    </head>
-      <body className={inter.className + ' ' + 'h-full'}>
-        <Providers>
-          {children}
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider appearance={{baseTheme: dark}}>
+      <html lang="en" className='dark h-full'>
+        <head>
+          {/* <SandCss /> */}
+        </head>
+        <body className={inter.className + ' ' + 'h-full'}>
+          <Providers>
+            {children}
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
