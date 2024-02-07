@@ -17,30 +17,8 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
   const { user, isLoaded } = useUser();
 
   const onClickDeleteCobble = async (id: string) => {
-    try {
-      // let response = await fetch('/api/deleteCobble?id=' + id, {
-      //   method: "POST",
-      //   headers: {
-      //     Accept: "application/json, text/plain, */*",
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-      // response = await response.json();
-
-      // console.log(response);
-
-      let response: unknown = await deleteCobble(id)
-
-      response = JSON.parse(JSON.stringify(response))
-
-      console.log(response);
-
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
+    await deleteCobble(id)
   }
-
 
 
   const containerVariants = {
@@ -54,8 +32,6 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
       }
     }
   }
-
-
 
 
   return (
@@ -113,7 +89,8 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                     }}
                     layout
                   >
-                    <div className='flex justify-between items-start pb-3'>
+                    <div className='flex w-full justify-between items-start pb-3'>
+                      <h4 className="text-white/50 drop-shadow-sm hover:drop-shadow-md mr-1">{cobble.title}</h4>
                       <Chip
                         classNames={{
                           content: " text-tiny text-white/60",
@@ -125,7 +102,6 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                       >
                         {cobble.preset}
                       </Chip>
-                      <h4 className="text-white/50 drop-shadow-sm hover:drop-shadow-md ml-1">{cobble.title}</h4>
                     </div>
 
 

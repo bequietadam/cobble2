@@ -7,8 +7,6 @@ export default function Navigation() {
 
   const { user, isLoaded } = useUser();
 
-  console.log(isLoaded, user)
-
 
   return (
     <Navbar

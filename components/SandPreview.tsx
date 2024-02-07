@@ -20,7 +20,7 @@ export default function SandPreview({ cobble, disabled }: SandPreviewProps) {
           dependencies: presets[cobble.preset].dependencies,
         }}
         files={cobble.files as SandpackFiles}
-        theme="auto"
+        theme="dark"
         template={presets[cobble.preset].template}
         options={{
           externalResources: presets[cobble.preset].externalResources,

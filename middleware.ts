@@ -6,9 +6,9 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
   publicRoutes: [
     '/',
-    // '/cairn',
+    '/cairn',
     '/editor',
-    // '/editor/[A-Za-z0-9]+',
+    '/editor/:id',
   ]
 });
  
