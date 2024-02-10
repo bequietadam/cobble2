@@ -69,20 +69,20 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         setError('');
         setSaved(false);
         setMessage('saved! :)')
-        setTimeout(() => setMessage(''), 4000);
+        setTimeout(() => setMessage(''), 3000);
       } catch (errorMessage: any) {
         setError(errorMessage);
         setSaved(false);
       }
-    } else if (!isLoaded || !user) {
-      setError('Sorry, guests cannot save projects');
-      setTimeout(() => setError(''), 4000);
-      return;
-    } else {
+    } else if (!title) {
       setError("A title is required");
       setTimeout(() => setError(''), 4000);
       return;
-    }
+    } else {
+      setError('Sorry, guests cannot save projects');
+      setTimeout(() => setError(''), 4000);
+      return;
+    } 
   }, [activeFile, files, preset, title, isLoaded, user])
 
 
@@ -122,7 +122,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             <Input
               color="primary"
               radius="full"
-              size="lg"
+              size="md"
               value={title}
               placeholder="new cobble"
               onValueChange={(title: string) => setTitle(title)}
@@ -194,7 +194,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           </div>
         </div>
       </div>
-      <div className="grow pt-4 flex flex-col">
+      <div className="grow pt-3 flex flex-col">
         {!status || status === 'initial' ? <Loader /> :
           <SandpackProvider
             style={{

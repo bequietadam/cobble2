@@ -76,15 +76,15 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
         setError(errorMessage);
         setSaved(false);
       }
-    } else if (!isLoaded || !user) {
-      setError('Sorry, guests cannot save projects');
-      setTimeout(() => setError(''), 4000);
-      return;
-    } else {
+    } else if (!title) {
       setError("A title is required");
       setTimeout(() => setError(''), 4000);
       return;
-    }
+    } else {
+      setError('Sorry, guests cannot save projects');
+      setTimeout(() => setError(''), 4000);
+      return;
+    } 
   }, [activeFile, files, preset, title, isLoaded, user, cobble._id])
 
 
@@ -125,7 +125,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             <Input
               color="primary"
               radius="full"
-              size="lg"
+              size="md"
               value={title}
               placeholder="new cobble"
               onValueChange={(title: string) => setTitle(title)}
@@ -197,7 +197,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           </div>
         </div>
       </div>
-      <div className="grow pt-4 flex flex-col">
+      <div className="grow pt-3 flex flex-col">
         {!status || status === 'initial' ? <Loader /> :
           <SandpackProvider
             style={{
