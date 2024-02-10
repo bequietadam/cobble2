@@ -9,6 +9,8 @@ import { Button, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
+import { useUser } from '@clerk/nextjs';
+import AlertMessage from './AlertMessage';
 
 // type PageProps = {
 //   addCobble:(cobble: Cobble) => Promise<void>;
@@ -42,10 +44,12 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 
   const size = useWindowSize();
 
+  const { user, isLoaded } = useUser();
+
 
 
   const saveCobble = useCallback(async () => {
-    if (!!title) {
+    if (!!title && (!!isLoaded && !!user)) {
       try {
         setSaved(true);
         let response = await fetch("/api/addCobble", {
@@ -65,15 +69,21 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         setError('');
         setSaved(false);
         setMessage('saved! :)')
-        setTimeout(() => setMessage(''), 2000);
+        setTimeout(() => setMessage(''), 4000);
       } catch (errorMessage: any) {
         setError(errorMessage);
         setSaved(false);
       }
+    } else if (!isLoaded || !user) {
+      setError('Sorry, guests cannot save projects');
+      setTimeout(() => setError(''), 4000);
+      return;
     } else {
-      return setError("A title is required");
+      setError("A title is required");
+      setTimeout(() => setError(''), 4000);
+      return;
     }
-  }, [activeFile, files, preset, title])
+  }, [activeFile, files, preset, title, isLoaded, user])
 
 
   const saveNewFile = () => {
@@ -103,8 +113,10 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   return (
     <>
       <div>
-        {error ? <div className="alert-error">{error}</div> : null}
-        {message ? <div className="alert-message">{message}</div> : null}
+        <AnimatePresence>
+          {error ? <AlertMessage type="error" message={error} /> : null}
+          {message ? <AlertMessage message={message} /> : null}
+        </AnimatePresence>
         <div className="flex">
           <div className="flex w-auto items-center">
             <Input
@@ -277,43 +289,4 @@ export default function SandEditor() {
       />
     </SandpackProvider>
   )
-
-
-  // return (
-  //   <>
-  //     <Sandpack
-  //       options={{
-  //         // classes: {
-  //         //   "sp-wrapper": "flex flex-1",
-  //         //   "sp-editor"
-  //         // },
-  //         //   externalResources: presets[preset].externalResources,
-  //         //   // visibleFiles: ["/App.js", "/Button.js"],
-  //         //   // activeFile: presets[preset].activeFile,
-  //       }}
-  //       customSetup={{
-  //         dependencies: presets[preset].dependencies,
-  //       }}
-  //       files={presets[preset].files as SandpackFiles}
-  //       theme={nightOwl}
-  //       template={presets[preset].template}
-
-  //     />
-  //     <style>{
-  //       `
-  //         .sp-wrapper {
-  //           display: flex;
-  //           flex: 1 1 0;
-  //         }
-  //         .sp-layout {
-  //           flex: 1 1 0;
-  //         }
-  //         .sp-stack {
-  //           height: auto !important;
-  //         }
-  //       `}
-  //     </style>
-  //   </>
-  // )
-
 }

@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import Loader from './Loader';
 import { useUser } from '@clerk/nextjs';
+import AlertMessage from './AlertMessage';
 
 type PageProps = {
   cobble: CobbleServer;
@@ -44,13 +45,13 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
 
   const size = useWindowSize();
 
-  
-  const {user, isLoaded} = useUser();
+
+  const { user, isLoaded } = useUser();
 
 
 
   const saveCobble = useCallback(async () => {
-    if (!!title) {
+    if (!!title && (!!isLoaded && !!user)) {
       try {
         setSaved(true);
         let response = await fetch("/api/editCobble?id=" + cobble._id, {
@@ -70,15 +71,21 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
         setError('');
         setSaved(false);
         setMessage('saved! :)')
-        setTimeout(() => setMessage(''), 2000);
+        setTimeout(() => setMessage(''), 3000);
       } catch (errorMessage: any) {
         setError(errorMessage);
         setSaved(false);
       }
+    } else if (!isLoaded || !user) {
+      setError('Sorry, guests cannot save projects');
+      setTimeout(() => setError(''), 4000);
+      return;
     } else {
-      return setError("A title is required");
+      setError("A title is required");
+      setTimeout(() => setError(''), 4000);
+      return;
     }
-  }, [activeFile, files, preset, title, cobble._id])
+  }, [activeFile, files, preset, title, isLoaded, user, cobble._id])
 
 
   const saveNewFile = () => {
@@ -105,11 +112,14 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   }
 
 
+
   return (
     <>
       <div>
-        {error ? <div className="alert-error">{error}</div> : null}
-        {message ? <div className="alert-message">{message}</div> : null}
+        <AnimatePresence>
+          {error ? <AlertMessage type="error" message={error} /> : null}
+          {message ? <AlertMessage message={message} /> : null}
+        </AnimatePresence>
         <div className="flex">
           <div className="flex w-auto items-center">
             <Input
@@ -119,7 +129,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               value={title}
               placeholder="new cobble"
               onValueChange={(title: string) => setTitle(title)}
-              endContent={!!isLoaded && !!user && 
+              endContent={
                 <Button
                   className="px-4"
                   color="primary"

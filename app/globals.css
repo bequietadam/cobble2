@@ -31,13 +31,13 @@ body {
   /* width: 100%; */
   color: crimson;
   position: fixed;
-  top: 68px;
+  top: 62px;
   left: 34px;
 }
-.alert-message {
+.alert-success {
   /* width: 100%; */
   color: teal;
   position: fixed;
-  top: 68px;
+  top: 62px;
   left: 34px;
 }
