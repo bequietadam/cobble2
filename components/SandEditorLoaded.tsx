@@ -113,6 +113,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
 
 
 
+
   return (
     <>
       <div>
@@ -143,7 +144,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             />
           </div>
           <div className="flex ml-auto items-center">
-            <AnimatePresence initial={false} >
+            {/* <AnimatePresence initial={false} >
               <motion.div
                 className="mr-3"
                 animate={showNewFileInput ? 'anim' : 'init'}
@@ -191,7 +192,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               radius="full"
               variant="ghost"
               size="sm"
-            >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
+            >{showNewFileInput ? 'save new file' : 'add new file'}</Button> */}
             {/* <PresetDropdown onSelect={onChangePreset} selected={preset} /> */}
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
@@ -213,8 +214,8 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             template={presets[cobble.preset].template}
             options={{
               externalResources: presets[cobble.preset].externalResources,
-              //   // visibleFiles: cobble.visibleFiles,
-              //   // activeFile: cobble.activeFile,
+              //   // visibleFiles: visibleFiles,
+              //   // activeFile: activeFile,
 
             }}
           // autoSave='true'

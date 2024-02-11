@@ -40,7 +40,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [saved, setSaved] = useState(false);
 
   const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, openFile, status, } = sandpack;
+  const { files, addFile, activeFile, openFile, status, visibleFiles } = sandpack;
 
   const size = useWindowSize();
 
@@ -82,7 +82,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
       setError('Sorry, guests cannot save projects');
       setTimeout(() => setError(''), 4000);
       return;
-    } 
+    }
   }, [activeFile, files, preset, title, isLoaded, user])
 
 
@@ -96,8 +96,8 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
     addFile({
       [newFilePath]: {
         code: '',
-        hidden: false,
-        active: true,
+        // hidden: false,
+        // active: true,
       }
     });
     openFile(newFilePath);
@@ -140,7 +140,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             />
           </div>
           <div className="flex ml-auto items-center">
-            <AnimatePresence initial={false} >
+            {/* <AnimatePresence initial={false} >
               <motion.div
                 className="mr-3"
                 animate={showNewFileInput ? 'anim' : 'init'}
@@ -188,7 +188,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               radius="full"
               variant="ghost"
               size="sm"
-            >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
+            >{showNewFileInput ? 'save new file' : 'add new file'}</Button> */}
             <PresetDropdown onSelect={onChangePreset} selected={preset} />
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
@@ -210,10 +210,12 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             template={presets[preset].template}
             options={{
               externalResources: presets[preset].externalResources,
-              //   // visibleFiles: ["/App.js", "/Button.js"],
-              //   // activeFile: presets[preset].activeFile,
+              // visibleFiles: visibleFiles,
+              // activeFile: activeFile
 
             }}
+            key={activeFile}
+
           // autoSave='true'
           >
             <SandpackLayout
