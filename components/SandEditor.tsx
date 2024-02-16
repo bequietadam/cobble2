@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useState } from 'react';
-import { SandpackCodeEditor, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
+import { SandpackCodeEditor, SandpackFile, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
@@ -40,13 +40,22 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [saved, setSaved] = useState(false);
 
   const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, openFile, status, visibleFiles } = sandpack;
+  const { files, addFile, activeFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
 
   const size = useWindowSize();
 
   const { user, isLoaded } = useUser();
 
 
+  // useEffect(() => {
+  //   updateFile(presets[preset].files as SandpackFiles)
+  //   // const newFiles = presets[preset].files || {};
+  //   // const newCurrent = newFiles[Object.keys(newFiles)[0]]
+  //   // updateCurrentFile(newCurrent)
+  // }, [preset, updateFile])
+
+
+  console.log(files);
 
   const saveCobble = useCallback(async () => {
     if (!!title && (!!isLoaded && !!user)) {
@@ -99,7 +108,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         // hidden: false,
         // active: true,
       }
-    });
+    }, undefined, true);
     openFile(newFilePath);
     setNewFileName('');
   }
@@ -109,10 +118,14 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
     setShowNewFileInput(true);
   }
 
+  // useEffect(() => {
+  //   updateFile(files, undefined, true)
+  //   console.log('done')
+  // }, [files, updateFile])
 
   return (
     <>
-      <div>
+      <div ref={lazyAnchorRef}>
         <AnimatePresence>
           {error ? <AlertMessage type="error" message={error} /> : null}
           {message ? <AlertMessage message={message} /> : null}
@@ -140,7 +153,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             />
           </div>
           <div className="flex ml-auto items-center">
-            {/* <AnimatePresence initial={false} >
+            <AnimatePresence initial={false} >
               <motion.div
                 className="mr-3"
                 animate={showNewFileInput ? 'anim' : 'init'}
@@ -188,63 +201,64 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               radius="full"
               variant="ghost"
               size="sm"
-            >{showNewFileInput ? 'save new file' : 'add new file'}</Button> */}
+            >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
             <PresetDropdown onSelect={onChangePreset} selected={preset} />
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
         </div>
       </div>
-      <div className="grow pt-3 flex flex-col">
+      <div className="grow pt-3 flex flex-col" >
         {!status || status === 'initial' ? <Loader /> :
-          <SandpackProvider
+          // <SandpackProvider
+          //   style={{
+          //     display: 'flex',
+          //     flexDirection: 'column',
+          //     flexGrow: 1,
+          //   }}
+          //   // customSetup={{
+          //   //   dependencies: presets[preset].dependencies,
+          //   // }}
+          //   files={presets[preset].files as SandpackFiles}
+          //   theme={nightOwl}
+          //   template={presets[preset].template}
+          //   options={{
+          //     externalResources: presets[preset].externalResources,
+          //     // visibleFiles: visibleFiles,
+          //     // activeFile: activeFile
+
+          //   }}
+          //   key={activeFile}
+
+          // // autoSave='true'
+          // >
+          <SandpackLayout
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
+              borderRadius: '14px',
+              borderWidth: 0,
             }}
-            // customSetup={{
-            //   dependencies: presets[preset].dependencies,
-            // }}
-            files={presets[preset].files as SandpackFiles}
-            theme={nightOwl}
-            template={presets[preset].template}
-            options={{
-              externalResources: presets[preset].externalResources,
-              // visibleFiles: visibleFiles,
-              // activeFile: activeFile
-
-            }}
-            key={activeFile}
-
-          // autoSave='true'
           >
-            <SandpackLayout
+            <SandpackFileExplorer />
+            <SandpackCodeEditor
               style={{
-                borderRadius: '14px',
-                borderWidth: 0,
+                height: !!size.height ? (size.height - 172) + 'px' : '100%',
               }}
-            >
-              <SandpackCodeEditor
-                style={{
-                  height: !!size.height ? (size.height - 172) + 'px' : '100%',
-                }}
-                showTabs={true}
-                // closableTabs={true}
-                showInlineErrors={true}
-                showLineNumbers={true}
-                wrapContent={false}
+              // showTabs={true}
+              // closableTabs={true}
+              showInlineErrors={true}
+              showLineNumbers={true}
+              wrapContent={false}
 
-              />
-              <SandpackPreview
-                style={{
-                  height: !!size.height ? (size.height - 172) + 'px' : '100%',
-                }}
-                showOpenInCodeSandbox={false}
-              // showRefreshButton={true}
-              // showRestartButton={true}
-              />
-            </SandpackLayout>
-          </SandpackProvider>
+            />
+            <SandpackPreview
+              style={{
+                height: !!size.height ? (size.height - 172) + 'px' : '100%',
+              }}
+              showOpenInCodeSandbox={false}
+              showRefreshButton={true}
+              showRestartButton={true}
+            />
+          </SandpackLayout>
+          // </SandpackProvider>
         }
       </div>
     </>
@@ -255,8 +269,58 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 }
 
 
+const SandLayout2 = () => {
+
+  const size = useWindowSize();
+
+  
+  const { sandpack } = useSandpack();
+  const { files, addFile, activeFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
+
+  
+
+  return (
+    <div>
+    <div ref={lazyAnchorRef}>
+    <SandpackLayout
+      style={{
+        borderRadius: '14px',
+        borderWidth: 0,
+      }}
+    >
+      <SandpackFileExplorer />
+      <SandpackCodeEditor
+        style={{
+          height: !!size.height ? (size.height - 172) + 'px' : '100%',
+        }}
+        showTabs={true}
+        // closableTabs={true}
+        showInlineErrors={true}
+        showLineNumbers={true}
+        wrapContent={false}
+
+      />
+      <SandpackPreview
+        style={{
+          height: !!size.height ? (size.height - 172) + 'px' : '100%',
+        }}
+        showOpenInCodeSandbox={false}
+        showRefreshButton={true}
+      // showRestartButton={true}
+      />
+    </SandpackLayout>
+    </div>
+    </div>
+  )
+}
+
+
 export default function SandEditor() {
   const [preset, setPreset] = useState<Preset>('react');
+
+
+  const size = useWindowSize();
+
 
 
   const onChangePreset = (newValue: unknown) => {
@@ -271,12 +335,12 @@ export default function SandEditor() {
         flexDirection: 'column',
         flexGrow: 1,
       }}
-      // customSetup={{
-      //   dependencies: presets[preset].dependencies,
-      // }}
+      customSetup={{
+        dependencies: presets[preset].dependencies,
+      }}
       files={presets[preset].files as SandpackFiles}
       theme={nightOwl}
-      template={presets[preset].template}
+      // template={presets[preset].template}
       options={{
         externalResources: presets[preset].externalResources,
         //   // visibleFiles: ["/App.js", "/Button.js"],
@@ -285,10 +349,11 @@ export default function SandEditor() {
       }}
     // autoSave='true'
     >
-      <SandLayout
+      {/* <SandLayout
         onChangePreset={onChangePreset}
         preset={preset}
-      />
+      /> */}
+      <SandLayout2 />
     </SandpackProvider>
   )
 }

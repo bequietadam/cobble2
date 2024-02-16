@@ -1,14 +1,14 @@
 const filesReact = {
   "/App.js": {
     code:
-`export default function App() {
+      `export default function App() {
   return <h1>Hello React world</h1>
 }
 `
   },
   "/index.js": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -23,7 +23,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
   "react": "^18.0.0",
   "react-dom": "^18.0.0",
@@ -37,7 +37,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -51,7 +51,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -72,13 +72,13 @@ h1 {
 const filesReactTs = {
   "/App.tsx": {
     code:
-`export default function App(): JSX.Element {
+      `export default function App(): JSX.Element {
   return <h1>Hello React typed world</h1>
 }`
   },
   "/index.tsx": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -92,7 +92,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -108,7 +108,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -122,7 +122,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -139,7 +139,7 @@ h1 {
   },
   "/tsconfig.json": {
     code:
-`{ 
+      `{ 
   "include": [
       "./**/*"
   ],
@@ -156,7 +156,7 @@ h1 {
 const filesNext = {
   "/next.config.js": {
     code:
-`/** @type {import('next').NextConfig} */
+      `/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -167,7 +167,7 @@ module.exports = nextConfig
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "next": "latest",
     "react": "latest",
@@ -186,7 +186,7 @@ module.exports = nextConfig
   },
   "/pages/_app.js": {
     code:
-  `import '../styles.css'
+      `import '../styles.css'
   
   export default function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />
@@ -194,7 +194,7 @@ module.exports = nextConfig
   },
   "/pages/index.js": {
     code:
-`export default function Home({ data }) {
+      `export default function Home({ data }) {
   return (
     <div>
       <h1>Hello Next {data}</h1>
@@ -209,8 +209,8 @@ module.exports = nextConfig
   }`
   },
   "/styles.css": {
-    code: 
-`body {
+    code:
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -231,7 +231,7 @@ h1 {
 const filesNextTs = {
   "/next.config.js": {
     code:
-`/** @type {import('next').NextConfig} */
+      `/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -242,13 +242,13 @@ module.exports = nextConfig
   },
   "/App.tsx": {
     code:
-`export default function App(): JSX.Element {
+      `export default function App(): JSX.Element {
   return <h1>Hello Next typed world</h1>
 }`
   },
   "/index.tsx": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -264,7 +264,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "next": "latest",
     "react": "^18.0.0",
@@ -290,7 +290,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -304,7 +304,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -322,7 +322,7 @@ h1 {
   },
   "/tsconfig.json": {
     code:
-`{
+      `{
   "include": [
     "./**/*"
   ],
@@ -336,16 +336,17 @@ h1 {
   },
 };
 
+
 const filesStyledComponents = {
   "/App.js": {
     code:
-`export default function App() {
+      `export default function App() {
   return <h1>Hello StyledComponents world</h1>
 }`
   },
   "/index.js": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import App from "./App";
@@ -359,7 +360,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -372,7 +373,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -386,7 +387,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -406,14 +407,14 @@ h1 {
 const filesStyledComponentsTs = {
   "/App.tsx": {
     code:
-`export default function App(): JSX.Element {
+      `export default function App(): JSX.Element {
   return <h1>Hello StyledComponents typed world</h1>
 }
 `
   },
   "/index.tsx": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import App from "./App";
@@ -427,7 +428,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -444,7 +445,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -458,7 +459,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -475,7 +476,7 @@ h1 {
   },
   "/tsconfig.json": {
     code:
-    `{
+      `{
       "include": [
         "./**/*"
       ],
@@ -493,13 +494,13 @@ h1 {
 const filesFramerMotion = {
   "/App.js": {
     code:
-`export default function App() {
+      `export default function App() {
   return <h1>Hello Framer world</h1>
 }`
   },
   "/index.js": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import App from "./App";
@@ -512,7 +513,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -526,7 +527,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
   <meta charset="UTF-8">
@@ -540,7 +541,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -560,14 +561,14 @@ h1 {
 const filesFramerMotionTs = {
   "/App.tsx": {
     code:
-`export default function App(): JSX.Element {
+      `export default function App(): JSX.Element {
   return <h1>Hello Framer Motion typed world</h1>
 }
 `
   },
   "/index.tsx": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import App from "./App";
@@ -580,7 +581,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -598,7 +599,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -612,7 +613,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -629,7 +630,7 @@ h1 {
   },
   "/tsconfig.json": {
     code:
-`{
+      `{
   "include": [
     "./**/*"
   ],
@@ -650,13 +651,13 @@ h1 {
 const filesReactThree = {
   "/App.js": {
     code:
-`export default function App() {
+      `export default function App() {
   return <h1>Hello @React-Three world</h1>
 }`
   },
   "/index.js": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -671,7 +672,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -687,7 +688,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -701,7 +702,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -721,13 +722,13 @@ h1 {
 const filesReactThreeTs = {
   "/App.tsx": {
     code:
-`export default function App(): JSX.Element {
+      `export default function App(): JSX.Element {
   return <h1>Hello @React-Three typed world</h1>
 }`
   },
   "/index.tsx": {
     code:
-`import React, { StrictMode } from "react";
+      `import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -742,7 +743,7 @@ root.render(
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -762,7 +763,7 @@ root.render(
   },
   "/public/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -776,7 +777,7 @@ root.render(
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -794,7 +795,7 @@ h1 {
   },
   "/tsconfig.json": {
     code:
-`{
+      `{
   "include": [
     "./**/*"
   ],
@@ -816,7 +817,7 @@ const filesP5js = {
 const filesTypescript = {
   "/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html>
 
   <head>
@@ -832,12 +833,12 @@ const filesTypescript = {
   },
   "/index.ts": {
     code:
-`import "./styles.css";
+      `import "./styles.css";
 document.getElementById("app").innerHTML = '<h1>Hello TypeScript world</h1>';`
   },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {},
   "devDependencies": {
     "typescript": "^4.0.0"
@@ -847,7 +848,7 @@ document.getElementById("app").innerHTML = '<h1>Hello TypeScript world</h1>';`
   },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -865,7 +866,7 @@ h1 {
   },
   "/tsconfig.json": {
     code:
-`{
+      `{
   "compilerOptions": {
     "strict": true,
     "module": "commonjs",
@@ -1078,7 +1079,7 @@ h1 {
 const filesHtmlCssJs = {
   "/index.html": {
     code:
-`<!DOCTYPE html>
+      `<!DOCTYPE html>
 <html>
   <head>
     <title>Parcel Sandbox</title>
@@ -1092,24 +1093,24 @@ const filesHtmlCssJs = {
     <script src="index.js"></script>
   </body>
 </html>`
-    },
+  },
 
   "/index.js": {
     code:
-`import "./styles.css";
+      `import "./styles.css";
 document.getElementById("app").innerHTML = '<h1>Hello HTML, CSS & JS world</h1>';`
-    },
+  },
   "/package.json": {
     code:
-`{
+      `{
   "dependencies": {},
   "main": "/index.js",
   "devDependencies": {}
 }`
-    },
+  },
   "/styles.css": {
     code:
-`body {
+      `body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1123,7 +1124,7 @@ document.getElementById("app").innerHTML = '<h1>Hello HTML, CSS & JS world</h1>'
 h1 {
   font-size: 1.5rem;
 }`
-   },
+  },
 
 }
 
