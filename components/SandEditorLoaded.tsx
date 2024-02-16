@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useState } from 'react';
-import { Sandpack, SandpackCodeEditor, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
+import { Sandpack, SandpackCodeEditor, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
@@ -226,6 +226,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             borderWidth: 0,
           }}
         >
+          {/* <SandpackFileExplorer /> */}
           <SandpackCodeEditor
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',

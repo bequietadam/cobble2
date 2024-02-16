@@ -237,12 +237,12 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             borderWidth: 0,
           }}
         >
-          <SandpackFileExplorer />
+          {/* <SandpackFileExplorer /> */}
           <SandpackCodeEditor
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
             }}
-            // showTabs={true}
+            showTabs={true}
             // closableTabs={true}
             showInlineErrors={true}
             showLineNumbers={true}
