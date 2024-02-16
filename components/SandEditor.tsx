@@ -208,29 +208,29 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         </div>
       </div>
       <div className="grow pt-3 flex flex-col" >
-        {!status || status === 'initial' ? <Loader /> :
-          // <SandpackProvider
-          //   style={{
-          //     display: 'flex',
-          //     flexDirection: 'column',
-          //     flexGrow: 1,
-          //   }}
-          //   // customSetup={{
-          //   //   dependencies: presets[preset].dependencies,
-          //   // }}
-          //   files={presets[preset].files as SandpackFiles}
-          //   theme={nightOwl}
-          //   template={presets[preset].template}
-          //   options={{
-          //     externalResources: presets[preset].externalResources,
-          //     // visibleFiles: visibleFiles,
-          //     // activeFile: activeFile
+        {/* {!status || status === 'initial' ? <Loader /> : */}
+          {/* <SandpackProvider
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+            }}
+            // customSetup={{
+            //   dependencies: presets[preset].dependencies,
+            // }}
+            files={presets[preset].files as SandpackFiles}
+            theme={nightOwl}
+            template={presets[preset].template}
+            options={{
+              externalResources: presets[preset].externalResources,
+              // visibleFiles: visibleFiles,
+              // activeFile: activeFile
 
-          //   }}
-          //   key={activeFile}
+            }}
+            key={activeFile}
 
-          // // autoSave='true'
-          // >
+          // autoSave='true'
+          > */}
           <SandpackLayout
             style={{
               borderRadius: '14px',
@@ -240,7 +240,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             <SandpackFileExplorer />
             <SandpackCodeEditor
               style={{
-                height: !!size.height ? (size.height - 172) + 'px' : '100%',
+                height: !!size.height ? (size.height - 148) + 'px' : '100%',
               }}
               // showTabs={true}
               // closableTabs={true}
@@ -251,15 +251,15 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             />
             <SandpackPreview
               style={{
-                height: !!size.height ? (size.height - 172) + 'px' : '100%',
+                height: !!size.height ? (size.height - 148) + 'px' : '100%',
               }}
               showOpenInCodeSandbox={false}
               showRefreshButton={true}
               showRestartButton={true}
             />
           </SandpackLayout>
-          // </SandpackProvider>
-        }
+          {/* </SandpackProvider> */}
+        
       </div>
     </>
   )
@@ -271,45 +271,50 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 
 const SandLayout2 = () => {
 
+  const [title, setTitle] = useState<string>('');
+  const [newFileName, setNewFileName] = useState<string>('');
+  const [showNewFileInput, setShowNewFileInput] = useState(false);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const size = useWindowSize();
 
-  
+
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
 
-  
+
 
   return (
     <div>
-    <div ref={lazyAnchorRef}>
-    <SandpackLayout
-      style={{
-        borderRadius: '14px',
-        borderWidth: 0,
-      }}
-    >
-      <SandpackFileExplorer />
-      <SandpackCodeEditor
-        style={{
-          height: !!size.height ? (size.height - 172) + 'px' : '100%',
-        }}
-        showTabs={true}
-        // closableTabs={true}
-        showInlineErrors={true}
-        showLineNumbers={true}
-        wrapContent={false}
+        <div ref={lazyAnchorRef}>
+          <SandpackLayout
+            style={{
+              borderRadius: '14px',
+              borderWidth: 0,
+            }}
+          >
+            <SandpackFileExplorer />
+            <SandpackCodeEditor
+              style={{
+                height: !!size.height ? (size.height - 148) + 'px' : '100%',
+              }}
+              showTabs={true}
+              // closableTabs={true}
+              showInlineErrors={true}
+              showLineNumbers={true}
+              wrapContent={false}
 
-      />
-      <SandpackPreview
-        style={{
-          height: !!size.height ? (size.height - 172) + 'px' : '100%',
-        }}
-        showOpenInCodeSandbox={false}
-        showRefreshButton={true}
-      // showRestartButton={true}
-      />
-    </SandpackLayout>
-    </div>
+            />
+            <SandpackPreview
+              style={{
+                height: !!size.height ? (size.height - 148) + 'px' : '100%',
+              }}
+              showOpenInCodeSandbox={false}
+              showRefreshButton={true}
+            // showRestartButton={true}
+            />
+          </SandpackLayout>
+        </div>
     </div>
   )
 }
@@ -349,11 +354,11 @@ export default function SandEditor() {
       }}
     // autoSave='true'
     >
-      {/* <SandLayout
+      <SandLayout
         onChangePreset={onChangePreset}
         preset={preset}
-      /> */}
-      <SandLayout2 />
+      />
+      {/* <SandLayout2 /> */}
     </SandpackProvider>
   )
 }
