@@ -41,7 +41,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   const [saved, setSaved] = useState(false);
 
   const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, openFile, status, visibleFiles } = sandpack;
+  const { files, addFile, activeFile, lazyAnchorRef, openFile, status, visibleFiles } = sandpack;
 
   const size = useWindowSize();
 
@@ -84,7 +84,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
       setError('Sorry, guests cannot save projects');
       setTimeout(() => setError(''), 4000);
       return;
-    } 
+    }
   }, [activeFile, files, preset, title, isLoaded, user, cobble._id])
 
 
@@ -98,10 +98,10 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
     addFile({
       [newFilePath]: {
         code: '',
-        hidden: false,
-        active: true,
+        // hidden: false,
+        // active: true,
       }
-    });
+    }, undefined, true);
     openFile(newFilePath);
     setNewFileName('');
   }
@@ -116,7 +116,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
 
   return (
     <>
-      <div>
+      <div ref={lazyAnchorRef}>
         <AnimatePresence>
           {error ? <AlertMessage type="error" message={error} /> : null}
           {message ? <AlertMessage message={message} /> : null}
@@ -144,7 +144,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             />
           </div>
           <div className="flex ml-auto items-center">
-            {/* <AnimatePresence initial={false} >
+            <AnimatePresence initial={false} >
               <motion.div
                 className="mr-3"
                 animate={showNewFileInput ? 'anim' : 'init'}
@@ -192,15 +192,15 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               radius="full"
               variant="ghost"
               size="sm"
-            >{showNewFileInput ? 'save new file' : 'add new file'}</Button> */}
+            >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
             {/* <PresetDropdown onSelect={onChangePreset} selected={preset} /> */}
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
         </div>
       </div>
       <div className="grow pt-3 flex flex-col">
-        {!status || status === 'initial' ? <Loader /> :
-          <SandpackProvider
+        {/* {!status || status === 'initial' ? <Loader /> : */}
+        {/* <SandpackProvider
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -219,35 +219,34 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
 
             }}
           // autoSave='true'
-          >
-            <SandpackLayout
-              style={{
-                borderRadius: '14px',
-                borderWidth: 0,
-              }}
-            >
-              <SandpackCodeEditor
-                style={{
-                  height: !!size.height ? (size.height - 172) + 'px' : '100%',
-                }}
-                showTabs={true}
-                // closableTabs={true}
-                showInlineErrors={true}
-                showLineNumbers={true}
-                wrapContent={false}
+          > */}
+        <SandpackLayout
+          style={{
+            borderRadius: '14px',
+            borderWidth: 0,
+          }}
+        >
+          <SandpackCodeEditor
+            style={{
+              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+            }}
+            showTabs={true}
+            // closableTabs={true}
+            showInlineErrors={true}
+            showLineNumbers={true}
+            wrapContent={false}
 
-              />
-              <SandpackPreview
-                style={{
-                  height: !!size.height ? (size.height - 172) + 'px' : '100%',
-                }}
-                showOpenInCodeSandbox={false}
-              // showRefreshButton={true}
-              // showRestartButton={true}
-              />
-            </SandpackLayout>
-          </SandpackProvider>
-        }
+          />
+          <SandpackPreview
+            style={{
+              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+            }}
+            showOpenInCodeSandbox={false}
+          // showRefreshButton={true}
+          // showRestartButton={true}
+          />
+        </SandpackLayout>
+        {/* </SandpackProvider> */}
       </div>
     </>
   )
@@ -272,12 +271,12 @@ export default function SandEditorLoaded({ cobble }: PageProps) {
         flexDirection: 'column',
         flexGrow: 1,
       }}
-      // customSetup={{
-      //   dependencies:  presets[cobble.preset].dependencies,
-      // }}
+      customSetup={{
+        dependencies:  presets[cobble.preset].dependencies,
+      }}
       files={cobble.files}
       theme={nightOwl}
-      template={presets[cobble.preset].template}
+      // template={presets[cobble.preset].template}
       options={{
         externalResources: presets[cobble.preset].externalResources,
         //   // visibleFiles: cobble.visibleFiles,
@@ -289,7 +288,7 @@ export default function SandEditorLoaded({ cobble }: PageProps) {
       <SandLayout
         cobble={cobble}
         onChangePreset={onChangePreset}
-        preset={cobble.preset}
+        preset={preset}
       />
     </SandpackProvider>
   )

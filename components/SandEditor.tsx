@@ -209,7 +209,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
       </div>
       <div className="grow pt-3 flex flex-col" >
         {/* {!status || status === 'initial' ? <Loader /> : */}
-          {/* <SandpackProvider
+        {/* <SandpackProvider
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -231,35 +231,34 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 
           // autoSave='true'
           > */}
-          <SandpackLayout
+        <SandpackLayout
+          style={{
+            borderRadius: '14px',
+            borderWidth: 0,
+          }}
+        >
+          <SandpackFileExplorer />
+          <SandpackCodeEditor
             style={{
-              borderRadius: '14px',
-              borderWidth: 0,
+              height: !!size.height ? (size.height - 148) + 'px' : '100%',
             }}
-          >
-            <SandpackFileExplorer />
-            <SandpackCodeEditor
-              style={{
-                height: !!size.height ? (size.height - 148) + 'px' : '100%',
-              }}
-              // showTabs={true}
-              // closableTabs={true}
-              showInlineErrors={true}
-              showLineNumbers={true}
-              wrapContent={false}
+            // showTabs={true}
+            // closableTabs={true}
+            showInlineErrors={true}
+            showLineNumbers={true}
+            wrapContent={false}
 
-            />
-            <SandpackPreview
-              style={{
-                height: !!size.height ? (size.height - 148) + 'px' : '100%',
-              }}
-              showOpenInCodeSandbox={false}
-              showRefreshButton={true}
-              showRestartButton={true}
-            />
-          </SandpackLayout>
-          {/* </SandpackProvider> */}
-        
+          />
+          <SandpackPreview
+            style={{
+              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+            }}
+            showOpenInCodeSandbox={false}
+          // showRefreshButton={true}
+          // showRestartButton={true}
+          />
+        </SandpackLayout>
+        {/* </SandpackProvider> */}
       </div>
     </>
   )
@@ -286,35 +285,35 @@ const SandLayout2 = () => {
 
   return (
     <div>
-        <div ref={lazyAnchorRef}>
-          <SandpackLayout
+      <div ref={lazyAnchorRef}>
+        <SandpackLayout
+          style={{
+            borderRadius: '14px',
+            borderWidth: 0,
+          }}
+        >
+          <SandpackFileExplorer />
+          <SandpackCodeEditor
             style={{
-              borderRadius: '14px',
-              borderWidth: 0,
+              height: !!size.height ? (size.height - 148) + 'px' : '100%',
             }}
-          >
-            <SandpackFileExplorer />
-            <SandpackCodeEditor
-              style={{
-                height: !!size.height ? (size.height - 148) + 'px' : '100%',
-              }}
-              showTabs={true}
-              // closableTabs={true}
-              showInlineErrors={true}
-              showLineNumbers={true}
-              wrapContent={false}
+            showTabs={true}
+            // closableTabs={true}
+            showInlineErrors={true}
+            showLineNumbers={true}
+            wrapContent={false}
 
-            />
-            <SandpackPreview
-              style={{
-                height: !!size.height ? (size.height - 148) + 'px' : '100%',
-              }}
-              showOpenInCodeSandbox={false}
-              showRefreshButton={true}
-            // showRestartButton={true}
-            />
-          </SandpackLayout>
-        </div>
+          />
+          <SandpackPreview
+            style={{
+              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+            }}
+            showOpenInCodeSandbox={false}
+            showRefreshButton={true}
+          // showRestartButton={true}
+          />
+        </SandpackLayout>
+      </div>
     </div>
   )
 }
@@ -322,11 +321,6 @@ const SandLayout2 = () => {
 
 export default function SandEditor() {
   const [preset, setPreset] = useState<Preset>('react');
-
-
-  const size = useWindowSize();
-
-
 
   const onChangePreset = (newValue: unknown) => {
     setPreset(newValue as Preset)
