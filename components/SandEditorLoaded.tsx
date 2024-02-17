@@ -198,7 +198,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           </div>
         </div>
       </div>
-      <div className="grow pt-3 flex flex-col">
+      <div className="grow pt-3 flex flex-col relative">
         {/* {!status || status === 'initial' ? <Loader /> : */}
         {/* <SandpackProvider
             style={{
@@ -248,6 +248,26 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           />
         </SandpackLayout>
         {/* </SandpackProvider> */}
+        <AnimatePresence initial={false}>
+          {(!status || status === 'initial') &&
+            <motion.div
+              className="h-full w-full absolute top-0 left-0 bg-black rounded-2xl"
+              initial="init"
+              animate="anim"
+              exit="init"
+              variants={{
+                init: {
+                  opacity: 0,
+                },
+                anim: {
+                  opacity: 1,
+                },
+              }}
+            >
+
+            </motion.div>
+          }
+        </AnimatePresence>
       </div>
     </>
   )

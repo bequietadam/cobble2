@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { SandpackCodeEditor, SandpackFile, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
@@ -54,8 +54,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   //   // updateCurrentFile(newCurrent)
   // }, [preset, updateFile])
 
-
-  console.log(files);
 
   const saveCobble = useCallback(async () => {
     if (!!title && (!!isLoaded && !!user)) {
@@ -119,9 +117,14 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   }
 
   // useEffect(() => {
-  //   updateFile(files, undefined, true)
-  //   console.log('done')
-  // }, [files, updateFile])
+  //   if (!status || status === 'initial') {
+  //     return
+  //   } else {
+  //     console.log('FOCUS')
+  //     lazyAnchorRef.current?.focus()
+  //   }
+
+  // }, [status, lazyAnchorRef])
 
   return (
     <>
@@ -207,8 +210,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           </div>
         </div>
       </div>
-      <div className="grow pt-3 flex flex-col" >
-        {/* {!status || status === 'initial' ? <Loader /> : */}
+      <div className="grow pt-3 flex flex-col relative">
         {/* <SandpackProvider
             style={{
               display: 'flex',
@@ -259,7 +261,28 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           />
         </SandpackLayout>
         {/* </SandpackProvider> */}
+        <AnimatePresence initial={false}>
+          {(!status || status === 'initial') &&
+            <motion.div
+              className="h-full w-full absolute top-0 left-0 bg-black rounded-2xl"
+              initial="init"
+              animate="anim"
+              exit="init"
+              variants={{
+                init: {
+                  opacity: 0,
+                },
+                anim: {
+                  opacity: 1,
+                },
+              }}
+            >
+
+            </motion.div>
+          }
+        </AnimatePresence>
       </div>
+
     </>
   )
 
@@ -319,6 +342,7 @@ const SandLayout2 = () => {
 }
 
 
+
 export default function SandEditor() {
   const [preset, setPreset] = useState<Preset>('react');
 
@@ -328,31 +352,33 @@ export default function SandEditor() {
 
 
   return (
-    <SandpackProvider
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        flexGrow: 1,
-      }}
-      customSetup={{
-        dependencies: presets[preset].dependencies,
-      }}
-      files={presets[preset].files as SandpackFiles}
-      theme={nightOwl}
-      // template={presets[preset].template}
-      options={{
-        externalResources: presets[preset].externalResources,
-        //   // visibleFiles: ["/App.js", "/Button.js"],
-        //   // activeFile: presets[preset].activeFile,
+    <Suspense fallback={<Loader />}>
+      <SandpackProvider
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 1,
+        }}
+        customSetup={{
+          dependencies: presets[preset].dependencies,
+        }}
+        files={presets[preset].files as SandpackFiles}
+        theme={nightOwl}
+        // template={presets[preset].template}
+        options={{
+          externalResources: presets[preset].externalResources,
+          //   // visibleFiles: ["/App.js", "/Button.js"],
+          //   // activeFile: presets[preset].activeFile,
 
-      }}
-    // autoSave='true'
-    >
-      <SandLayout
-        onChangePreset={onChangePreset}
-        preset={preset}
-      />
-      {/* <SandLayout2 /> */}
-    </SandpackProvider>
+        }}
+      // autoSave='true'
+      >
+        <SandLayout
+          onChangePreset={onChangePreset}
+          preset={preset}
+        />
+        {/* <SandLayout2 /> */}
+      </SandpackProvider>
+    </Suspense>
   )
 }
