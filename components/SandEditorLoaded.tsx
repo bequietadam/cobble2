@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useState } from 'react';
-import { Sandpack, SandpackCodeEditor, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
+import { Sandpack, SandpackCodeEditor, SandpackConsole, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
@@ -238,6 +238,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             wrapContent={false}
 
           />
+          <SandpackConsole />
           <SandpackPreview
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
@@ -292,12 +293,12 @@ export default function SandEditorLoaded({ cobble }: PageProps) {
         flexDirection: 'column',
         flexGrow: 1,
       }}
-      customSetup={{
-        dependencies:  presets[cobble.preset].dependencies,
-      }}
+      // customSetup={{
+      //   dependencies:  presets[cobble.preset].dependencies,
+      // }}
       files={cobble.files}
       theme={nightOwl}
-      // template={presets[cobble.preset].template}
+      template={presets[cobble.preset].template}
       options={{
         externalResources: presets[cobble.preset].externalResources,
         //   // visibleFiles: cobble.visibleFiles,

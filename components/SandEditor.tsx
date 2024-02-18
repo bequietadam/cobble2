@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
-import { SandpackCodeEditor, SandpackFile, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
+import { SandpackCodeEditor, SandpackConsole, SandpackFile, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
@@ -239,7 +239,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             borderWidth: 0,
           }}
         >
-          {/* <SandpackFileExplorer /> */}
+          <SandpackFileExplorer />
           <SandpackCodeEditor
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
@@ -251,6 +251,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             wrapContent={false}
 
           />
+          <SandpackConsole />
           <SandpackPreview
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
@@ -359,12 +360,12 @@ export default function SandEditor() {
           flexDirection: 'column',
           flexGrow: 1,
         }}
-        customSetup={{
-          dependencies: presets[preset].dependencies,
-        }}
+        // customSetup={{
+        //   dependencies: presets[preset].dependencies,
+        // }}
         files={presets[preset].files as SandpackFiles}
         theme={nightOwl}
-        // template={presets[preset].template}
+        template={presets[preset].template}
         options={{
           externalResources: presets[preset].externalResources,
           //   // visibleFiles: ["/App.js", "/Button.js"],

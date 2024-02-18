@@ -29,14 +29,15 @@ const presets: Presets = {
   //   template: "nextjs",
   //   dependencies: {},
   //   externalResources: ["https://cdn.tailwindcss.com"],
-  //   files: files['next'],
+  //   // files: files['next'],
+  //   files: null,
   // },
-  "next-ts": {
-    template: "react-ts",
-    dependencies: {},
-    externalResources: ["https://cdn.tailwindcss.com"],
-    files: files['next-ts'],
-  },
+  // "next-ts": {
+  //   template: "nextjs",
+  //   dependencies: {},
+  //   externalResources: ["https://cdn.tailwindcss.com"],
+  //   files: files['next-ts'],
+  // },
   "styled-components": {
     template: "react",
     dependencies: {},
