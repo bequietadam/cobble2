@@ -41,7 +41,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   const [saved, setSaved] = useState(false);
 
   const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, lazyAnchorRef, openFile, status, visibleFiles } = sandpack;
+  const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, status, visibleFiles } = sandpack;
 
   const size = useWindowSize();
 
@@ -87,6 +87,9 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
     }
   }, [activeFile, files, preset, title, isLoaded, user, cobble._id])
 
+  const deleteActiveFile = useCallback(() => {
+    deleteFile(activeFile);
+  }, [activeFile, deleteFile])
 
   const saveNewFile = () => {
     if (!newFileName) {
@@ -193,6 +196,14 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               variant="ghost"
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
+            <Button
+              className="mr-6 px-6"
+              color="danger"
+              onClick={() => deleteActiveFile()}
+              radius="full"
+              variant="ghost"
+              size="sm"
+            >delete active file</Button>
             {/* <PresetDropdown onSelect={onChangePreset} selected={preset} /> */}
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
@@ -235,10 +246,10 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             // closableTabs={true}
             showInlineErrors={true}
             showLineNumbers={true}
-            wrapContent={false}
+            wrapContent={true}
 
           />
-          <SandpackConsole />
+          {/* <SandpackConsole /> */}
           <SandpackPreview
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',

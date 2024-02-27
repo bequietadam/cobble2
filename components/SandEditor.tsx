@@ -40,7 +40,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [saved, setSaved] = useState(false);
 
   const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
+  const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
 
   const size = useWindowSize();
 
@@ -92,6 +92,9 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
     }
   }, [activeFile, files, preset, title, isLoaded, user])
 
+  const deleteActiveFile = useCallback(() => {
+    deleteFile(activeFile);
+  }, [activeFile, deleteFile])
 
   const saveNewFile = () => {
     if (!newFileName) {
@@ -205,6 +208,14 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               variant="ghost"
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
+            <Button
+              className="mr-6 px-6"
+              color="danger"
+              onClick={() => deleteActiveFile()}
+              radius="full"
+              variant="ghost"
+              size="sm"
+            >delete active file</Button>
             <PresetDropdown onSelect={onChangePreset} selected={preset} />
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
@@ -239,7 +250,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             borderWidth: 0,
           }}
         >
-          <SandpackFileExplorer />
+          {/* <SandpackFileExplorer /> */}
           <SandpackCodeEditor
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
@@ -248,10 +259,10 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             // closableTabs={true}
             showInlineErrors={true}
             showLineNumbers={true}
-            wrapContent={false}
+            wrapContent={true}
 
           />
-          <SandpackConsole />
+          {/* <SandpackConsole /> */}
           <SandpackPreview
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
