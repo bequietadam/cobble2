@@ -8,7 +8,6 @@ import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
-import Loader from './Loader';
 import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
 
@@ -210,34 +209,13 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
         </div>
       </div>
       <div className="grow pt-3 flex flex-col relative">
-        {/* {!status || status === 'initial' ? <Loader /> : */}
-        {/* <SandpackProvider
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-            }}
-            // customSetup={{
-            //   dependencies:  presets[cobble.preset].dependencies,
-            // }}
-            files={cobble.files}
-            theme={nightOwl}
-            template={presets[cobble.preset].template}
-            options={{
-              externalResources: presets[cobble.preset].externalResources,
-              //   // visibleFiles: visibleFiles,
-              //   // activeFile: activeFile,
-
-            }}
-          // autoSave='true'
-          > */}
         <SandpackLayout
           style={{
             borderRadius: '14px',
             borderWidth: 0,
           }}
         >
-          {/* <SandpackFileExplorer /> */}
+          <SandpackFileExplorer />
           <SandpackCodeEditor
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
@@ -259,7 +237,6 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           // showRestartButton={true}
           />
         </SandpackLayout>
-        {/* </SandpackProvider> */}
         <AnimatePresence initial={false}>
           {(!status || status === 'initial') &&
             <motion.div

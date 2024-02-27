@@ -8,13 +8,9 @@ import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Input } from '@nextui-org/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
-import Loader from './Loader';
 import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
 
-// type PageProps = {
-//   addCobble:(cobble: Cobble) => Promise<void>;
-// }
 
 type SandLayoutProps = {
   preset: Preset;
@@ -222,35 +218,13 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
         </div>
       </div>
       <div className="grow pt-3 flex flex-col relative">
-        {/* <SandpackProvider
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-            }}
-            // customSetup={{
-            //   dependencies: presets[preset].dependencies,
-            // }}
-            files={presets[preset].files as SandpackFiles}
-            theme={nightOwl}
-            template={presets[preset].template}
-            options={{
-              externalResources: presets[preset].externalResources,
-              // visibleFiles: visibleFiles,
-              // activeFile: activeFile
-
-            }}
-            key={activeFile}
-
-          // autoSave='true'
-          > */}
         <SandpackLayout
           style={{
             borderRadius: '14px',
             borderWidth: 0,
           }}
         >
-          {/* <SandpackFileExplorer /> */}
+          <SandpackFileExplorer />
           <SandpackCodeEditor
             style={{
               height: !!size.height ? (size.height - 148) + 'px' : '100%',
@@ -272,7 +246,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           // showRestartButton={true}
           />
         </SandpackLayout>
-        {/* </SandpackProvider> */}
         <AnimatePresence initial={false}>
           {(!status || status === 'initial') &&
             <motion.div
@@ -303,57 +276,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
 }
 
 
-const SandLayout2 = () => {
-
-  const [title, setTitle] = useState<string>('');
-  const [newFileName, setNewFileName] = useState<string>('');
-  const [showNewFileInput, setShowNewFileInput] = useState(false);
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
-  const size = useWindowSize();
-
-
-  const { sandpack } = useSandpack();
-  const { files, addFile, activeFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
-
-
-
-  return (
-    <div>
-      <div ref={lazyAnchorRef}>
-        <SandpackLayout
-          style={{
-            borderRadius: '14px',
-            borderWidth: 0,
-          }}
-        >
-          <SandpackFileExplorer />
-          <SandpackCodeEditor
-            style={{
-              height: !!size.height ? (size.height - 148) + 'px' : '100%',
-            }}
-            showTabs={true}
-            // closableTabs={true}
-            showInlineErrors={true}
-            showLineNumbers={true}
-            wrapContent={false}
-
-          />
-          <SandpackPreview
-            style={{
-              height: !!size.height ? (size.height - 148) + 'px' : '100%',
-            }}
-            showOpenInCodeSandbox={false}
-            showRefreshButton={true}
-          // showRestartButton={true}
-          />
-        </SandpackLayout>
-      </div>
-    </div>
-  )
-}
-
-
 
 export default function SandEditor() {
   const [preset, setPreset] = useState<Preset>('react');
@@ -364,7 +286,6 @@ export default function SandEditor() {
 
 
   return (
-    <Suspense fallback={<Loader />}>
       <SandpackProvider
         style={{
           display: 'flex',
@@ -389,8 +310,6 @@ export default function SandEditor() {
           onChangePreset={onChangePreset}
           preset={preset}
         />
-        {/* <SandLayout2 /> */}
       </SandpackProvider>
-    </Suspense>
   )
 }
