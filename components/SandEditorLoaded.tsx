@@ -197,7 +197,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
             <Button
-              className="mr-6 px-6"
+              className="mr-6 px-6 opacity-90"
               color="danger"
               onClick={() => deleteActiveFile()}
               radius="full"
