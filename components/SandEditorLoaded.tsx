@@ -10,6 +10,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
+import ResizablePanel from './ResizablePanel';
+import useWindowSize2 from '@hooks/useWindowSize2';
 
 type PageProps = {
   cobble: CobbleServer;
@@ -42,7 +44,8 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, status, visibleFiles } = sandpack;
 
-  const size = useWindowSize();
+  const { width } = useWindowSize2();
+  const { height } = useWindowSize();
 
 
   const { user, isLoaded } = useUser();
@@ -112,6 +115,12 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
     setNewFileName('');
     setShowNewFileInput(true);
   }
+
+
+
+  const minWidth = 202; // width of the fileExplorer
+  const maxWidth = width - 32 - (minWidth * 2);
+  const initWidth = (width - minWidth - 32) / 2;
 
 
 
@@ -213,24 +222,36 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           style={{
             borderRadius: '14px',
             borderWidth: 0,
+            width: '100%',
           }}
         >
-          <SandpackFileExplorer />
-          <SandpackCodeEditor
+          <SandpackFileExplorer
             style={{
-              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+              height: !!height ? (height - 148) + 'px' : '100%',
             }}
-            showTabs={true}
-            // closableTabs={true}
-            showInlineErrors={true}
-            showLineNumbers={true}
-            wrapContent={true}
-
           />
+          <ResizablePanel
+            initWidth={initWidth}
+            minWidth={minWidth}
+            maxWidth={maxWidth}
+          >
+            <SandpackCodeEditor
+              style={{
+                height: !!height ? (height - 148) + 'px' : '10px',
+                minHeight: 0,
+              }}
+              showTabs={true}
+              // closableTabs={true}
+              showInlineErrors={true}
+              showLineNumbers={true}
+              wrapContent={true}
+
+            />
+          </ResizablePanel>
           {/* <SandpackConsole /> */}
           <SandpackPreview
             style={{
-              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+              height: !!height ? (height - 148) + 'px' : '100%',
             }}
             showOpenInCodeSandbox={false}
           // showRefreshButton={true}

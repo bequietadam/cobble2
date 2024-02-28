@@ -10,6 +10,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
+import ResizablePanel from './ResizablePanel';
+import useWindowSize2 from '@hooks/useWindowSize2';
 
 
 type SandLayoutProps = {
@@ -38,17 +40,10 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
 
-  const size = useWindowSize();
+  const { width } = useWindowSize2();
+  const { height } = useWindowSize();
 
   const { user, isLoaded } = useUser();
-
-
-  // useEffect(() => {
-  //   updateFile(presets[preset].files as SandpackFiles)
-  //   // const newFiles = presets[preset].files || {};
-  //   // const newCurrent = newFiles[Object.keys(newFiles)[0]]
-  //   // updateCurrentFile(newCurrent)
-  // }, [preset, updateFile])
 
 
   const saveCobble = useCallback(async () => {
@@ -115,15 +110,13 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
     setShowNewFileInput(true);
   }
 
-  // useEffect(() => {
-  //   if (!status || status === 'initial') {
-  //     return
-  //   } else {
-  //     console.log('FOCUS')
-  //     lazyAnchorRef.current?.focus()
-  //   }
 
-  // }, [status, lazyAnchorRef])
+  const minWidth = 202; // width of the fileExplorer
+  const maxWidth = width - 32 - (minWidth * 2);
+  const initWidth = (width - minWidth - 32) / 2;
+
+
+
 
   return (
     <>
@@ -224,10 +217,21 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             borderWidth: 0,
           }}
         >
-          <SandpackFileExplorer />
+          <SandpackFileExplorer
+          
+          style={{
+            height: !!height ? (height - 148) + 'px' : '100%',
+            width: minWidth,
+          }}
+          />
+          <ResizablePanel
+            initWidth={initWidth}
+            minWidth={minWidth}
+            maxWidth={maxWidth}
+          >
           <SandpackCodeEditor
             style={{
-              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+              height: !!height ? (height - 148) + 'px' : '10px',
             }}
             showTabs={true}
             // closableTabs={true}
@@ -236,10 +240,11 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             wrapContent={true}
 
           />
+          </ResizablePanel>
           {/* <SandpackConsole /> */}
           <SandpackPreview
             style={{
-              height: !!size.height ? (size.height - 148) + 'px' : '100%',
+              height: !!height ? (height - 148) + 'px' : '100%',
             }}
             showOpenInCodeSandbox={false}
           // showRefreshButton={true}
