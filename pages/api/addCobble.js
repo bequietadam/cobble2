@@ -4,13 +4,14 @@ export default async function addCobble(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db("cobble");
-    const { title, preset, files, activeFile } = JSON.parse(req.body);
+    const { title, preset, files, activeFile, resizeValue } = JSON.parse(req.body);
 
     const cobble = await db.collection("cobbles").insertOne({
       title,
       preset,
       files,
       activeFile,
+      resizeValue,
     });
     res.json(cobble);
   } catch (e) {

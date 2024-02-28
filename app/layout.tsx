@@ -3,7 +3,6 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import { Inter } from 'next/font/google'
 import { Providers } from './providers'
-import SandCss from '@components/SandCss'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +20,6 @@ export default function RootLayout({
     <ClerkProvider appearance={{baseTheme: dark}}>
       <html lang="en" className='dark h-full'>
         <head>
-          {/* <SandCss /> */}
         </head>
         <body className={inter.className + ' ' + 'h-full'}>
           <Providers>

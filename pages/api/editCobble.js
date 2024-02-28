@@ -6,7 +6,7 @@ export default async function editCobble(req, res) {
     const client = await clientPromise;
     const db = client.db("cobble");
     const { id } = req.query;
-    const { title, preset, files, activeFile } = JSON.parse(req.body);
+    const { title, preset, files, activeFile, resizeValue } = JSON.parse(req.body);
     
 
     const cobble = await db.collection("cobbles").updateOne(
@@ -19,6 +19,7 @@ export default async function editCobble(req, res) {
           preset: preset,
           files: files,
           activeFile: activeFile,
+          resizeValue: resizeValue,
         },
       }
     );

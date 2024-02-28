@@ -12,6 +12,7 @@ import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
 import ResizablePanel from './ResizablePanel';
 import useWindowSize2 from '@hooks/useWindowSize2';
+import Loader from './Loader';
 
 type PageProps = {
   cobble: CobbleServer;
@@ -28,6 +29,7 @@ export type Cobble = {
   preset: Preset;
   files: {};
   activeFile?: string;
+  resizeValue: number;
 }
 export type CobbleServer = Cobble & {
   _id: string;
@@ -40,6 +42,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [saved, setSaved] = useState(false);
+  const [resizeValue, setResizeValue] = useState(cobble.resizeValue);
 
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, status, visibleFiles } = sandpack;
@@ -63,6 +66,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             preset,
             files,
             activeFile,
+            resizeValue,
           }),
           headers: {
             Accept: "application/json, text/plain, */*",
@@ -87,7 +91,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
       setTimeout(() => setError(''), 4000);
       return;
     }
-  }, [activeFile, files, preset, title, isLoaded, user, cobble._id])
+  }, [activeFile, files, preset, title, isLoaded, user, cobble._id, resizeValue])
 
   const deleteActiveFile = useCallback(() => {
     deleteFile(activeFile);
@@ -120,7 +124,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
 
   const minWidth = 202; // width of the fileExplorer
   const maxWidth = width - 32 - (minWidth * 2);
-  const initWidth = (width - minWidth - 32) / 2;
+  const initWidth = !!cobble.resizeValue ? cobble.resizeValue : (width - minWidth - 32) / 2;
 
 
 
@@ -133,7 +137,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           {message ? <AlertMessage message={message} /> : null}
         </AnimatePresence>
         <div className="flex">
-          <div className="flex w-auto items-center">
+          <div className="flex w-80 items-center">
             <Input
               color="primary"
               radius="full"
@@ -143,14 +147,13 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               onValueChange={(title: string) => setTitle(title)}
               endContent={
                 <Button
-                  className="px-4"
                   color="primary"
                   onClick={saveCobble}
                   radius="full"
                   variant="flat"
                   size="sm"
                   disabled={saved}
-                >save cobble</Button>
+                >{!!saved ? <span><Loader />{` `}</span> : 'save cobble'}</Button>
               }
             />
           </div>
@@ -234,6 +237,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             initWidth={initWidth}
             minWidth={minWidth}
             maxWidth={maxWidth}
+            setResizeValue={setResizeValue}
           >
             <SandpackCodeEditor
               style={{

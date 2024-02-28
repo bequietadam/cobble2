@@ -1,5 +1,4 @@
-import SandEditor, { Cobble } from '@components/SandEditor';
-import useWindowSize from '@hooks/useWindowSize';
+import SandEditor from '@components/SandEditor';
 
 export default function Page() {
   return (

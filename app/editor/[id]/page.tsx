@@ -1,5 +1,4 @@
-import SandEditor, { CobbleServer } from '@components/SandEditor';
-import SandEditorLoaded from '@components/SandEditorLoaded';
+import SandEditorLoaded, { CobbleServer } from '@components/SandEditorLoaded';
 import getCobble from '@lib/getCobble';
 
 type PageProps = {

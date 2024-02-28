@@ -12,6 +12,7 @@ import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
 import ResizablePanel from './ResizablePanel';
 import useWindowSize2 from '@hooks/useWindowSize2';
+import Loader from './Loader';
 
 
 type SandLayoutProps = {
@@ -19,15 +20,6 @@ type SandLayoutProps = {
   onChangePreset: (preset: unknown) => void;
 }
 
-export type Cobble = {
-  title: string;
-  preset: Preset;
-  files: {};
-  activeFile?: string;
-}
-export type CobbleServer = Cobble & {
-  _id: string;
-}
 
 const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [title, setTitle] = useState<string>('');
@@ -36,6 +28,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [saved, setSaved] = useState(false);
+  const [resizeValue, setResizeValue] = useState(0);
 
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
@@ -57,6 +50,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             preset,
             files,
             activeFile,
+            resizeValue,
           }),
           headers: {
             Accept: "application/json, text/plain, */*",
@@ -81,7 +75,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
       setTimeout(() => setError(''), 4000);
       return;
     }
-  }, [activeFile, files, preset, title, isLoaded, user])
+  }, [activeFile, files, preset, title, isLoaded, resizeValue, user])
 
   const deleteActiveFile = useCallback(() => {
     deleteFile(activeFile);
@@ -143,7 +137,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
                   variant="flat"
                   size="sm"
                   disabled={saved}
-                >save cobble</Button>
+                >{!!saved ? <span><Loader />{` `}</span> : 'save cobble'}</Button>
               }
             />
           </div>
@@ -228,6 +222,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             initWidth={initWidth}
             minWidth={minWidth}
             maxWidth={maxWidth}
+            setResizeValue={setResizeValue}
           >
           <SandpackCodeEditor
             style={{

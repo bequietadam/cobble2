@@ -1,8 +1,5 @@
-// "use client"
 import CobbleList from '@components/CobbleList';
-import { CobbleServer } from '@components/SandEditor';
-import { useEffect, useState } from 'react';
-import { Spinner } from '@nextui-org/react';
+import { CobbleServer } from '@components/SandEditorLoaded';
 import getCobbles from '@lib/getCobbles';
 
 

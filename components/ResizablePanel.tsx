@@ -9,7 +9,7 @@ type ResizableProps = {
     initWidth?: number,
     minWidth?: number,
     maxWidth?: number,
-    height?: number,
+    setResizeValue?: (value: number) => void;
 }
 
 export default function ResizablePanel({
@@ -17,17 +17,20 @@ export default function ResizablePanel({
     initWidth = 400,
     minWidth = 180,
     maxWidth = 800,
-    height,
+    setResizeValue = () => {},
 }: ResizableProps) {
     const [isDragging, setIsDragging] = useState(false);
-    const mWidth = useMotionValue(initWidth);
+    const mWidth = useMotionValue(
+        initWidth > maxWidth ? maxWidth : initWidth < minWidth ? minWidth : initWidth
+    );
 
     const handleDrag = React.useCallback((event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         let newWidth = mWidth.get() + info.delta.x;
         if (newWidth > minWidth && newWidth < maxWidth) {
             mWidth.set(newWidth);
+            setResizeValue(newWidth);
         }
-    }, [minWidth, maxWidth, mWidth]);
+    }, [minWidth, maxWidth, mWidth, setResizeValue]);
 
     
 
