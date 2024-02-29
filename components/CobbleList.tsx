@@ -2,7 +2,7 @@
 import { Button, Card, CardFooter, Chip } from '@nextui-org/react';
 import React from 'react';
 import SandPreview from './SandPreview';
-import { CobbleServer } from './SandEditor';
+import { CobbleServer } from './SandEditorLoaded';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
