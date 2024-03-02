@@ -27,33 +27,34 @@ const PresetDropdown = ({ className, onSelect, selected }: PresetDropdownProps) 
     const newOption: Option = { id: id, name: presetName };
 
     return newOption
-  } )
-  console.log(className)
+  })
 
 
 
   return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Button
-          className="opacity-65"
-          variant="flat"
-          size="sm"
-          radius="full"
-        >
-          {!!selected ? selected : 'Select preset'}
-        </Button>
-      </DropdownTrigger>
-      <DropdownMenu aria-label="Select preset" items={options} onAction={onSelect}>
-        {(item) => (
-          <DropdownItem
-            key={(item as Option).name}
+    <div className={className}>
+      <Dropdown>
+        <DropdownTrigger>
+          <Button
+            className="opacity-65"
+            variant="flat"
+            size="sm"
+            radius="full"
           >
-            {(item as Option).name}
-          </DropdownItem>
-        )}
-      </DropdownMenu>
-    </Dropdown>
+            {!!selected ? selected : 'Select preset'}
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Select preset" items={options} onAction={onSelect}>
+          {(item) => (
+            <DropdownItem
+              key={(item as Option).name}
+            >
+              {(item as Option).name}
+            </DropdownItem>
+          )}
+        </DropdownMenu>
+      </Dropdown>
+    </div>
   )
 };
 

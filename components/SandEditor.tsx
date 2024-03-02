@@ -6,7 +6,7 @@ import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
 import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Input } from '@nextui-org/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, Variants, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
@@ -20,6 +20,29 @@ type SandLayoutProps = {
   onChangePreset: (preset: unknown) => void;
 }
 
+const toolVariants: Variants = {
+  init: {
+    opacity: 0,
+    visibility: 'hidden',
+    transition: {
+      opacity: {
+        duration: 0.3,
+      },
+      visibility: {
+        delay: 0.5,
+      }
+    }
+  },
+  anim: {
+    opacity: 1,
+    visibility: 'visible',
+    transition: {
+      opacity: {
+        duration: 0.3,
+      },
+    }
+  },
+}
 
 const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [title, setTitle] = useState<string>('');
@@ -112,7 +135,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   }
 
 
-
+  const sandpackComponentHeight = !!height ? width <= 540 ? (height - 238) / 2 : width <= 768 ? (height - 194) / 2 : (height - 148) : 0;
 
 
   return (
@@ -144,70 +167,55 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               }
             />
           </div>
-          <div className="flex flex-wrap items-center justify-between xs:justify-end ml-auto w-full pt-3 min-[822px]:pt-0 md:w-auto">
-            <AnimatePresence initial={false} >
-              <motion.div
-                className="w-full xs:w-auto xs:mr-3 grow md:grow-0 shrink"
-                animate={showNewFileInput ? 'anim' : 'init'}
-                variants={{
-                  init: {
-                    opacity: 0,
-                    visibility: 'hidden',
-                    transition: {
-                      opacity: {
-                        duration: 0.3,
-                      },
-                      visibility: {
-                        delay: 0.5,
-                      }
-                    }
-                  },
-                  anim: {
-                    opacity: 1,
-                    visibility: 'visible',
-                    transition: {
-                      opacity: {
-                        duration: 0.3,
-                      },
-                    }
-                  },
-                }}
-              >
-                <Input
-                  className="text-default-500"
-                  color="default"
-                  radius="full"
-                  size="sm"
-                  value={newFileName}
-                  placeholder="newFileName.txt"
-                  onValueChange={(newName: string) => setNewFileName(newName)}
-                  variant="bordered"
-                  disabled={!showNewFileInput}
-                />
-              </motion.div>
-            </AnimatePresence>
+          <div className="flex flex-wrap items-center justify-start sm:justify-end pt-3 md:pt-0 w-full md:w-auto md:ml-auto">
+            <div className="w-full xs:w-auto h-8 shrink grow md:grow-0 md:w-56 pt-3 md:pt-0 relative">
+              <AnimatePresence initial={false} >
+                <motion.div
+                  className="w-full absolute top-0 right-0"
+                  animate={showNewFileInput ? 'anim' : 'init'}
+                  variants={toolVariants}
+                >
+                  <Input
+                    className="text-default-500"
+                    color="default"
+                    radius="full"
+                    size="sm"
+                    value={newFileName}
+                    placeholder="newFileName.txt"
+                    onValueChange={(newName: string) => setNewFileName(newName)}
+                    variant="bordered"
+                    disabled={!showNewFileInput}
+                  />
+                </motion.div>
+                <motion.div
+                  className="w-full xs:w-auto absolute top-0 right-0"
+                  animate={!showNewFileInput ? 'anim' : 'init'}
+                  variants={toolVariants}
+                >
+                  <Button
+                    className="px-6 opacity-90"
+                    color="danger"
+                    onClick={() => deleteActiveFile()}
+                    radius="full"
+                    variant="ghost"
+                    size="sm"
+                  >delete active file</Button>
+                </motion.div>
+              </AnimatePresence>
+            </div>
             <Button
-              className="mr-0 sm:mr-3 mt-3 xs:mt-0 px-6"
+              className="ml-0 xs:ml-3 mt-3 xs:mt-0 px-6 w-32"
               color="default"
               onClick={showNewFileInput ? saveNewFile : addNewFile}
               radius="full"
               variant="ghost"
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
-            <div className="mt-3 min-[614px]:mt-0 w-full xs:w-auto md:mt-0 flex items-center">
-              <Button
-                className="ml-1 xs:ml-6 mr-auto xs:mr-6 sm:ml-0 px-6 opacity-90"
-                color="danger"
-                onClick={() => deleteActiveFile()}
-                radius="full"
-                variant="ghost"
-                size="sm"
-              >delete active file</Button>
-              <PresetDropdown
-                onSelect={onChangePreset}
-                selected={preset}
-              />
-            </div>
+            <PresetDropdown
+              className="ml-auto  sm:ml-6 mt-3 sm:mt-0 w-28 flex flex-col w-auto xs:w-full sm:w-28 items-end sm:items-stretch"
+              onSelect={onChangePreset}
+              selected={preset}
+            />
             {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
         </div>
@@ -220,10 +228,10 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           }}
         >
           {// height will always be undefined in SSR preventing hydration issues
-            !!height && width >= (minWidth * 2) + 32 ?
+            !!height && width > 768 ?
               <SandpackFileExplorer
                 style={{
-                  height: !!height ? width > 768 ? width > 822 ? (height - 148) : (height - 194) : (height - 194) / 2 : '100%',
+                  height: !!height ? sandpackComponentHeight : '100%',
                   flexGrow: 0,
                   width: minWidth,
                 }}
@@ -232,14 +240,14 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           {// height will always be undefined in SSR preventing hydration issues
             !!height && width > 768 ?
               <ResizablePanel
-                initWidth={width > 768 ? initWidth : width - 34 - minWidth}
-                minWidth={width > 768 ? minWidth : width - 32 - minWidth}
-                maxWidth={width > 768 ? maxWidth : width - 32 - minWidth}
+                initWidth={initWidth}
+                minWidth={minWidth}
+                maxWidth={maxWidth}
                 setResizeValue={setResizeValue}
               >
                 <SandpackCodeEditor
                   style={{
-                    height: !!height ? width > 822 ? (height - 148) : (height - 194) : '10px',
+                    height: !!height ? sandpackComponentHeight : '10px',
                     minHeight: 0,
                   }}
                   showTabs={true}
@@ -252,7 +260,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               </ResizablePanel> :
               <SandpackCodeEditor
                 style={{
-                  height: !!height ? (height - 194) / 2 : '10px',
+                  height: !!height ? sandpackComponentHeight : '10px',
                   minHeight: 0,
                   flexGrow: 1,
                   flexShrink: 1,
@@ -270,7 +278,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           {/* <SandpackConsole /> */}
           <SandpackPreview
             style={{
-              height: !!height ? width > 768 ? width > 822 ? (height - 148) : (height - 194) : (height - 194) / 2 : '100%',
+              height: !!height ? sandpackComponentHeight : '100%',
             }}
             showOpenInCodeSandbox={false}
           // showRefreshButton={true}
