@@ -13,12 +13,13 @@ type Option = {
 }
 
 type PresetDropdownProps = {
+  className?: string;
   onSelect?: (newValue: unknown) => void;
   selected?: Preset
 }
 
 
-const PresetDropdown = ({ onSelect, selected }: PresetDropdownProps) => {
+const PresetDropdown = ({ className, onSelect, selected }: PresetDropdownProps) => {
   const presetList = Object.keys(presets) as Preset[];
 
 
@@ -27,12 +28,12 @@ const PresetDropdown = ({ onSelect, selected }: PresetDropdownProps) => {
 
     return newOption
   } )
-
+  console.log(className)
 
 
 
   return (
-    <Dropdown className="ml-auto">
+    <Dropdown>
       <DropdownTrigger>
         <Button
           className="opacity-65"

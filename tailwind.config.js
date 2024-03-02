@@ -9,6 +9,12 @@ module.exports = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      'xs': '380px',
+      'sm': '540px',
+      'md': '768px',
+      'lg': '1024px',
+    },
     extend: {
       borderRadius: {
         '2xl': '14px'

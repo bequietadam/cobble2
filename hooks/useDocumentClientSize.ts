@@ -6,12 +6,12 @@ type WindowSize = {
   height: number,
 }
 
-export default function useWindowSize2() {
+export default function useDocumentClientSize() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-    height: typeof window !== "undefined" ? window.innerHeight : 0,
+    width: typeof window !== "undefined" ? document.documentElement.clientWidth : 0,
+    height: typeof window !== "undefined" ? document.documentElement.clientHeight : 0,
   });
 
   useEffect(() => {

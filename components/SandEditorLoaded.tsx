@@ -11,7 +11,7 @@ import useWindowSize from '@hooks/useWindowSize';
 import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
 import ResizablePanel from './ResizablePanel';
-import useWindowSize2 from '@hooks/useWindowSize2';
+import useDocumentClientSize from '@hooks/useDocumentClientSize';
 import Loader from './Loader';
 
 type PageProps = {
@@ -47,8 +47,16 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, status, visibleFiles } = sandpack;
 
-  const { width } = useWindowSize2();
+  const { width } = useDocumentClientSize();
   const { height } = useWindowSize();
+  const minWidth = 200; // width of the fileExplorer
+  const maxWidth = width - 32 - (minWidth * 2);
+  const [initWidth, setInitWidth] = useState(cobble.resizeValue)
+
+  useEffect(() => {
+    setInitWidth(state => state === resizeValue ? state : resizeValue)
+  }, [resizeValue, width])
+  
 
 
   const { user, isLoaded } = useUser();
@@ -120,15 +128,6 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
     setShowNewFileInput(true);
   }
 
-
-
-  const minWidth = 202; // width of the fileExplorer
-  const maxWidth = width - 32 - (minWidth * 2);
-  const initWidth = !!cobble.resizeValue ? cobble.resizeValue : (width - minWidth - 32) / 2;
-
-
-
-
   return (
     <>
       <div ref={lazyAnchorRef}>
@@ -136,8 +135,8 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           {error ? <AlertMessage type="error" message={error} /> : null}
           {message ? <AlertMessage message={message} /> : null}
         </AnimatePresence>
-        <div className="flex">
-          <div className="flex w-80 items-center">
+        <div className="flex flex-wrap">
+          <div className="flex w-full shrink md:pr-6 md:w-56 md:grow md:max-w-xs items-center">
             <Input
               color="primary"
               radius="full"
@@ -157,10 +156,10 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               }
             />
           </div>
-          <div className="flex ml-auto items-center">
+          <div className="flex flex-wrap items-center justify-between xs:justify-end ml-auto w-full pt-3 md:pt-0 md:w-auto">
             <AnimatePresence initial={false} >
               <motion.div
-                className="mr-3"
+                className="w-full xs:w-auto xs:mr-3 grow md:grow-0 shrink"
                 animate={showNewFileInput ? 'anim' : 'init'}
                 variants={{
                   init: {
@@ -200,7 +199,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               </motion.div>
             </AnimatePresence>
             <Button
-              className="mr-6 px-6"
+              className="mr-0 sm:mr-6 mt-3 xs:mt-0 px-6"
               color="default"
               onClick={showNewFileInput ? saveNewFile : addNewFile}
               radius="full"
@@ -208,7 +207,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
             <Button
-              className="mr-6 px-6 opacity-90"
+              className="ml-1 xs:ml-6  sm:ml-0 mt-3 sm:mt-0 px-6 opacity-90"
               color="danger"
               onClick={() => deleteActiveFile()}
               radius="full"
@@ -228,20 +227,27 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
             width: '100%',
           }}
         >
+          {// height will always be undefined in SSR preventing hydration issues
+          !!height && width >= (minWidth * 2) + 32 ?
           <SandpackFileExplorer
             style={{
-              height: !!height ? (height - 148) + 'px' : '100%',
+              height: !!height ? width > 768 ? (height - 148) : (height - 140) / 2 : '100%',
+              flexGrow: 0,
+              width: minWidth,
             }}
-          />
+          /> :
+          ''}
+          {// height will always be undefined in SSR preventing hydration issues
+          !!height && width > 768 ? 
           <ResizablePanel
-            initWidth={initWidth}
-            minWidth={minWidth}
-            maxWidth={maxWidth}
+            initWidth={width > 768 ? initWidth : width - 34 - minWidth}
+            minWidth={width > 768 ? minWidth : width - 32 - minWidth}
+            maxWidth={width > 768 ? maxWidth : width - 32 - minWidth}
             setResizeValue={setResizeValue}
           >
             <SandpackCodeEditor
               style={{
-                height: !!height ? (height - 148) + 'px' : '10px',
+                height: !!height ? (height - 148) : '10px',
                 minHeight: 0,
               }}
               showTabs={true}
@@ -251,11 +257,28 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               wrapContent={true}
 
             />
-          </ResizablePanel>
+          </ResizablePanel> :
+            <SandpackCodeEditor
+              style={{
+                height: !!height ? (height - 140) / 2 : '10px',
+                minHeight: 0,
+                flexGrow: 1,
+                flexShrink: 1,
+                width: 'auto',
+                minWidth: minWidth,
+              }}
+              showTabs={true}
+              // closableTabs={true}
+              showInlineErrors={true}
+              showLineNumbers={true}
+              wrapContent={true}
+
+            />
+          }
           {/* <SandpackConsole /> */}
           <SandpackPreview
             style={{
-              height: !!height ? (height - 148) + 'px' : '100%',
+              height: !!height ? width > 768 ? (height - 148) : (height - 140) / 2 : '100%',
             }}
             showOpenInCodeSandbox={false}
           // showRefreshButton={true}

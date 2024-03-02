@@ -10,7 +10,7 @@ export default function Navigation() {
 
   return (
     <Navbar
-      className="--navbar-height:3rem bg-gradient-to-r from-primary-100 px-2"
+      className="--navbar-height:3rem bg-gradient-to-r from-primary-100 sm:px-2"
       position="static"
       isBlurred={true}
       maxWidth="full"

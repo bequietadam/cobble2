@@ -1,6 +1,7 @@
 "use client"
+import useDocumentClientSize from "@hooks/useDocumentClientSize";
 import { PanInfo, motion, useDragControls, useMotionValue } from "framer-motion";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 
@@ -19,19 +20,32 @@ export default function ResizablePanel({
     maxWidth = 800,
     setResizeValue = () => {},
 }: ResizableProps) {
+    const { width } = useDocumentClientSize();
     const [isDragging, setIsDragging] = useState(false);
     const mWidth = useMotionValue(
         initWidth > maxWidth ? maxWidth : initWidth < minWidth ? minWidth : initWidth
     );
-
     const handleDrag = React.useCallback((event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-        let newWidth = mWidth.get() + info.delta.x;
-        if (newWidth > minWidth && newWidth < maxWidth) {
+        const newWidth = mWidth.get() + info.delta.x;
+        if (newWidth > maxWidth) {
+            mWidth.set(maxWidth),
+            setResizeValue(maxWidth)
+        } else if (newWidth < minWidth) {
+            mWidth.set(minWidth);
+            setResizeValue(minWidth);
+        } else {
             mWidth.set(newWidth);
             setResizeValue(newWidth);
         }
     }, [minWidth, maxWidth, mWidth, setResizeValue]);
 
+    useEffect(() => {
+        const newWidth = mWidth.get();
+        if (newWidth > maxWidth) {
+            mWidth.set(maxWidth),
+            setResizeValue(maxWidth)
+        } 
+    }, [maxWidth, mWidth, setResizeValue])
     
 
     return (
