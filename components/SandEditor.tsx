@@ -144,7 +144,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               }
             />
           </div>
-          <div className="flex flex-wrap items-center justify-between xs:justify-end ml-auto w-full pt-3 md:pt-0 md:w-auto">
+          <div className="flex flex-wrap items-center justify-between xs:justify-end ml-auto w-full pt-3 min-[822px]:pt-0 md:w-auto">
             <AnimatePresence initial={false} >
               <motion.div
                 className="w-full xs:w-auto xs:mr-3 grow md:grow-0 shrink"
@@ -194,7 +194,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               variant="ghost"
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
-            <div className="mt-3 min-[614px]:mt-0 w-full xs:w-auto md:mt-0 flex">
+            <div className="mt-3 min-[614px]:mt-0 w-full xs:w-auto md:mt-0 flex items-center">
               <Button
                 className="ml-1 xs:ml-6 mr-auto xs:mr-6 sm:ml-0 px-6 opacity-90"
                 color="danger"
@@ -223,7 +223,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
             !!height && width >= (minWidth * 2) + 32 ?
               <SandpackFileExplorer
                 style={{
-                  height: !!height ? width > 768 ? (height - 148) : (height - 140) / 2 : '100%',
+                  height: !!height ? width > 768 ? width > 822 ? (height - 148) : (height - 194) : (height - 194) / 2 : '100%',
                   flexGrow: 0,
                   width: minWidth,
                 }}
@@ -239,7 +239,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               >
                 <SandpackCodeEditor
                   style={{
-                    height: !!height ? (height - 148) : '10px',
+                    height: !!height ? width > 822 ? (height - 148) : (height - 194) : '10px',
                     minHeight: 0,
                   }}
                   showTabs={true}
@@ -252,7 +252,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
               </ResizablePanel> :
               <SandpackCodeEditor
                 style={{
-                  height: !!height ? (height - 140) / 2 : '10px',
+                  height: !!height ? (height - 194) / 2 : '10px',
                   minHeight: 0,
                   flexGrow: 1,
                   flexShrink: 1,
@@ -270,7 +270,7 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
           {/* <SandpackConsole /> */}
           <SandpackPreview
             style={{
-              height: !!height ? width > 768 ? (height - 148) : (height - 140) / 2 : '100%',
+              height: !!height ? width > 768 ? width > 822 ? (height - 148) : (height - 194) : (height - 194) / 2 : '100%',
             }}
             showOpenInCodeSandbox={false}
           // showRefreshButton={true}
