@@ -6,7 +6,7 @@ import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
 import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Input } from '@nextui-org/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, Variants, motion } from 'framer-motion';
 import useWindowSize from '@hooks/useWindowSize';
 import { useUser } from '@clerk/nextjs';
 import AlertMessage from './AlertMessage';
