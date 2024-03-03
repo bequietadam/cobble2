@@ -232,7 +232,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
           </div>
         </div>
       </div>
-      <div className="grow pt-3 flex flex-col relative">
+      <div className="grow pt-3 flex flex-col relative overflow-hidden">
         <SandpackLayout
           style={{
             borderRadius: '14px',

@@ -84,10 +84,6 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                       height: '40px'
                     }}
                     whileHover={{
-                      height: '250px',
-                      transition: { type: 'tween', duration: 0.25, }
-                    }}
-                    whileTap={{
                       height: '270px',
                       transition: { type: 'tween', duration: 0.25, }
                     }}
@@ -101,7 +97,6 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                         }}
                         radius="full"
                         size="sm"
-                        // startContent={ <presetIcon /> }
                         variant="flat"
                       >
                         {cobble.preset}
