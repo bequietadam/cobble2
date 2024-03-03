@@ -61,9 +61,10 @@ export default function ResizablePanel({
                 }}
             >{children}</motion.div>
             <motion.div
-                className="w-1 h-full absolute top-0 right-0 box-border" // add "border-r-2 border-black" if needed
+                className="w-1 h-full absolute top-0 right-0 box-border z-0" // add "border-r-2 border-black" if needed
                 style={{
                     cursor: "col-resize",
+                    touchAction: "none"
                 }}
                 drag="x"
                 dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
