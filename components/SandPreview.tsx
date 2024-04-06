@@ -25,26 +25,24 @@ export default function SandPreview({ cobble, disabled }: SandPreviewProps) {
         options={{
           externalResources: presets[cobble.preset].externalResources,
           // visibleFiles: ["/App.js", "/Button.js"],
-          activeFile: cobble.activeFile,
+          // activeFile: cobble.activeFile,
 
         }}
       >
         <SandpackLayout
           style={{
             // flex: '1 1 0'
-            borderRadius: '14px',
+            // paddingBottom: '20px',
+            border: 'none',
           }}
         >
           <SandpackPreview
-            style={{
-              // height: 'auto'
-            }}
             showRefreshButton={false}
             showOpenInCodeSandbox={false}
           />
         </SandpackLayout>
-        <div className="absolute w-full h-full bg-black/20 top-0 backdrop-blur-sm hover:backdrop-blur-none hover:bg-transparent transition-all rounded-2xl border-3 border-white" >
-        </div>
+        {/* <div className="absolute w-full h-full top-0 rounded-2xl border-3 border-white z-1" >
+        </div> */}
       </SandpackProvider>
     </>
   )

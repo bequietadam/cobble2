@@ -67,66 +67,86 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                 className="w-full"
               >
                 <Card
-                  className="border-none w-full cursor-default"
+                  className="border-3 border-white/90 w-full cursor-default"
 
                   isFooterBlurred={true}
                   radius="lg"
                 >
+
+                  <motion.div
+                    // className="flex flex-col justify-between items-start overflow-hidden py-2 px-4 absolute  left-4 bottom-4 rounded-2xl w-[calc(100%_-_2rem)] shadow-small z-10 bg-gradient-to-r from-primary-100/90 to-black/90 backdrop-blur-sm"
+                    className="flex flex-col justify-between items-start rounded-t-2xl py-2 px-4 w-full shadow-medium absolute bottom-0 z-10 bg-gradient-to-r from-primary-100 to-black backdrop-blur-sm"
+                    // style={{
+                    //   height: '40px'
+                    // }}
+                    // whileHover={{
+                    //   height: '270px',
+                    //   // transition: { type: 'tween', duration: 0.25, }
+                    // }}
+                    layout
+                  >
+
+
+                    {(!!isLoaded && !!user) ?
+
+                      <>
+                        <div className='flex w-full justify-between items-start pb-3'>
+                          <h4 className="text-white/50 drop-shadow-sm mr-1">{cobble.title}</h4>
+                          <Chip
+                            classNames={{
+                              content: " text-tiny text-white/60",
+                            }}
+                            radius="full"
+                            size="sm"
+                            variant="flat"
+                          >
+                            {cobble.preset}
+                          </Chip>
+                        </div>
+                        <Button
+                          className="px-4 w-full mt-auto"
+                          color="danger"
+                          onClick={() => onClickDeleteCobble(cobble._id)}
+                          radius="full"
+                          variant="ghost"
+                          size="sm"
+                        >delete</Button>
+                        <Link
+                          className="w-full mt-3"
+                          href={'/editor/' + cobble._id}
+                        >
+                          <Button
+                            className="px-4 w-full"
+                            color="primary"
+                            radius="full"
+                            variant="ghost"
+                            size="sm"
+                          >open</Button>
+                        </Link>
+                      </> :
+
+                      <Link href={'/editor/' + cobble._id} className='flex w-full justify-between items-start'>
+                        <h4 className="text-white/50 drop-shadow-sm mr-1">{cobble.title}</h4>
+                        <Chip
+                          classNames={{
+                            content: " text-tiny text-white/60",
+                          }}
+                          radius="full"
+                          size="sm"
+                          variant="flat"
+                        >
+                          {cobble.preset}
+                        </Chip>
+                      </Link>
+                    }
+                  </motion.div>
+
 
                   <SandPreview
                     cobble={cobble}
                     disabled={true}
                   />
 
-                  <motion.div
-                    className="flex flex-col justify-between items-start overflow-hidden py-2 px-4 absolute  left-4 bottom-4 rounded-2xl w-[calc(100%_-_2rem)] shadow-small z-10 bg-gradient-to-r from-primary-100/80 to-black/80"
-                    style={{
-                      height: '40px'
-                    }}
-                    whileHover={{
-                      height: '270px',
-                      transition: { type: 'tween', duration: 0.25, }
-                    }}
-                    layout
-                  >
-                    <div className='flex w-full justify-between items-start pb-3'>
-                      <h4 className="text-white/50 drop-shadow-sm hover:drop-shadow-md mr-1">{cobble.title}</h4>
-                      <Chip
-                        classNames={{
-                          content: " text-tiny text-white/60",
-                        }}
-                        radius="full"
-                        size="sm"
-                        variant="flat"
-                      >
-                        {cobble.preset}
-                      </Chip>
-                    </div>
-
-
-                    {!!isLoaded && !!user &&
-                      <Button
-                        className="px-4 w-full mt-auto"
-                        color="danger"
-                        onClick={() => onClickDeleteCobble(cobble._id)}
-                        radius="full"
-                        variant="ghost"
-                        size="sm"
-                      >delete</Button>}
-                    <Link
-                      className="w-full mt-3"
-                      href={'/editor/' + cobble._id}
-                    >
-                      <Button
-                        className="px-4 w-full"
-                        color="primary"
-                        radius="full"
-                        variant="ghost"
-                        size="sm"
-                      >open</Button>
-                    </Link>
-
-                  </motion.div>
                 </Card>
               </motion.div>
             )
