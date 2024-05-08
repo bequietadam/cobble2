@@ -26,6 +26,11 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.hero h1 {
+  font-weight: 900;
+  transition: transform .12s ease-out;
+}
+
 
 .alert-error {
   /* width: 100%; */
