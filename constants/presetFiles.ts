@@ -51,7 +51,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -122,7 +126,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -210,7 +218,11 @@ module.exports = nextConfig
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -434,7 +446,12 @@ const filesNextTs = {
     `
   },
   "/app/globals.css": {
-    code: `:root {
+    code: 
+    `html {
+  background: black;
+  color: #999;
+}
+body {
       --max-width: 1100px;
       --border-radius: 12px;
       --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
@@ -978,7 +995,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1050,7 +1071,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1132,7 +1157,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1204,7 +1233,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1293,7 +1326,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1368,7 +1405,11 @@ root.render(
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1439,7 +1480,11 @@ document.getElementById("app").innerHTML = '<h1>Hello TypeScript world</h1>';`
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;
@@ -1701,7 +1746,11 @@ document.getElementById("app").innerHTML = '<h1>Hello HTML, CSS & JS world</h1>'
   },
   "/styles.css": {
     code:
-      `body {
+    `html {
+  background: black;
+  color: #999;
+}
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: auto;
   -moz-font-smoothing: auto;

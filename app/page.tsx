@@ -69,7 +69,7 @@ export default function Page() {
 
   useLayoutEffect(() => {
 
-    const interval = setInterval(() => setStat(old => Number(!old)), stat ? 600 : 2200)
+    const interval = setInterval(() => setStat(old => Number(!old)), stat ? 300 : 2200)
 
     return () => clearInterval(interval)
 
@@ -128,7 +128,7 @@ export default function Page() {
         return (
           <motion.h1
             className={classNames}
-            // custom={custom}
+            custom={c}
             key={e + i}
             ref={refs[i]} 
             style={{
@@ -143,7 +143,7 @@ export default function Page() {
               //     duration: 0.05,
               //     delay: (c.i / 1),
               //   }
-              duratioh: 0.03
+              duration: 0.15,
             }}
             // animate={!!i ? 'anim' : 'init'}
             // variants={variants}

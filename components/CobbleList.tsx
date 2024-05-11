@@ -13,6 +13,20 @@ type CobbleListProps = {
 }
 
 
+const cardVariants = {
+  init: {
+    opacity: 0,
+    y: -100,
+  },
+  anim: (id: number) => ({
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: id / 10,
+    }
+  })
+}
+
 export default function CobbleList({ cobbles }: CobbleListProps) {
   const { user, isLoaded } = useUser();
 
@@ -45,21 +59,9 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
         >
           {cobbles.map((cobble, id) => {
 
-            const cardVariants = {
-              init: {
-                opacity: 0,
-                y: -100,
-              },
-              anim: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  delay: id / 10,
-                }
-              }
-            }
             return (
               <motion.div
+                custom={id}
                 key={id + cobble.title}
                 initial="init"
                 animate="anim"
@@ -67,7 +69,7 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                 className="w-full"
               >
                 <Card
-                  className="border-3 border-white/90 w-full cursor-default"
+                  className="w-full cursor-default"
 
                   isFooterBlurred={true}
                   radius="lg"
@@ -75,10 +77,10 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
 
                   <motion.div
                     // className="flex flex-col justify-between items-start overflow-hidden py-2 px-4 absolute  left-4 bottom-4 rounded-2xl w-[calc(100%_-_2rem)] shadow-small z-10 bg-gradient-to-r from-primary-100/90 to-black/90 backdrop-blur-sm"
-                    className="flex flex-col justify-between items-start rounded-t-2xl py-2 px-4 w-full shadow-medium absolute bottom-0 z-10 bg-gradient-to-r from-primary-100 to-black backdrop-blur-sm"
-                    // style={{
-                    //   height: '40px'
-                    // }}
+                    className="flex wrap flex-col justify-between items-start rounded-2xl py-2 px-4 m-1.5 w-full shadow-medium absolute bottom-0 z-10 bg-gradient-to-r from-primary-100 to-black backdrop-blur-sm"
+                    style={{
+                      width: 'calc(100% - 12px)',
+                    }}
                     // whileHover={{
                     //   height: '270px',
                     //   // transition: { type: 'tween', duration: 0.25, }
