@@ -1,6 +1,6 @@
 import React from 'react';
 
-type State = {
+type MouseState = {
   x: number;
   y: number;
   elementX: number;
@@ -25,7 +25,7 @@ export default function useMouse() {
 
   React.useLayoutEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      let newState: State = {
+      let newState: MouseState = {
         ...initState,
         x: event.pageX,
         y: event.pageY,
