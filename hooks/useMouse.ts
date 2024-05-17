@@ -1,6 +1,6 @@
 import React from 'react';
 
-type MouseState = {
+export type MouseState = {
   x: number;
   y: number;
   elementX: number;
@@ -19,7 +19,7 @@ const initState = {
 }
 
 export default function useMouse() {
-  const [state, setState] = React.useState<State>(initState);
+  const [state, setState] = React.useState<MouseState>(initState);
 
   const ref = React.useRef<HTMLDivElement>(null);
 
