@@ -61,10 +61,11 @@ const TitleCursor = ({
     title = 'Hello World',
 }: TitleCursorProps) => {
     const { state, ref } = useMouse();
+    const [scope, animate] = useAnimate();
     const [stat, setStat] = useState(0);
     const titleArray = new Array(length).fill(title);
 
-    // const x = useMotionValue(100);
+    // const x = useMotionValue(0);
     // const y = useMotionValue(0);
 
     // const distance = {
@@ -79,7 +80,7 @@ const TitleCursor = ({
     //     distance.y * 4,
     //     distance.y * 5,
     // ]
-    
+
     // const leftOutput = [0, 0,
     //     distance.x,
     //     distance.x * 2,
@@ -87,11 +88,8 @@ const TitleCursor = ({
     //     distance.x * 4,
     //     distance.x * 5,
     // ]
-    // const top = useTransform(() => topOutput)
+    // const top = useTransform(y, 0, distance.y * 5)
     // const left = useTransform(() => leftOutput)
-
-
-    const titleClassNames = `absolute text-${fontSize} opacity-95 bg-gradient-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent`
 
 
     useLayoutEffect(() => {
@@ -100,10 +98,23 @@ const TitleCursor = ({
         return () => clearInterval(interval)
     }, [stat])
 
+    // useEffect(() => {
+
+    //     animate('h1', { x: [0, 0,
+    //                     distance.x,
+    //                     distance.x * 2,
+    //                     distance.x * 3,
+    //                     distance.x * 4,
+    //                     distance.x * 5,
+    //                 ]
+    //     })
+    // })
+
 
     return (
         <div ref={ref} className="hero m-auto h-28 w-96 flex justify-center items-center relative">
-        {titleArray.map((e, i) => {
+            {/* <div ref={scope}> */}
+                {titleArray.map((e, i) => {
             const c = {
                 newX: state.elementX * -0.1,
                 newY: state.elementY * -0.1,
@@ -114,11 +125,10 @@ const TitleCursor = ({
             //new opacity logarythhmic ( reverse exponential)
             const opacity = (100 - (Math.round(Math.log(i + 1) * 38))) / 100;
 
-            console.log(opacity)
 
             return (
                 <motion.h1
-                    className={titleClassNames}
+                    className="absolute text-7xl opacity-95 bg-gradient-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent"
                     // custom={c}
                     key={e + i}
                     style={{
@@ -136,7 +146,7 @@ const TitleCursor = ({
                 >{e}</motion.h1>
             )
         })}
-            {/* {titleArray.map((e, i) => {
+                {/* {titleArray.map((e, i) => {
                 const opacity = (100 - (Math.round(Math.log(i + 1) * 38))) / 100;
 
 
@@ -144,6 +154,10 @@ const TitleCursor = ({
                 //     x: (state.elementX * -0.1) * (i * 0.25 + (i / 100)),
                 //     y: (state.elementY * -0.1) * (i * 0.25 + (i / 100)),
                 // }
+
+                x.set(distance.x  * 5 * (i * 0.25 + (i / 100)))
+                y.set(distance.y * 5 * (i * 0.25 + (i / 100)))
+                
 
 
 
@@ -154,14 +168,38 @@ const TitleCursor = ({
                         key={e + i}
                         style={{
                             opacity: opacity,
-                            left: left,
-                            top: top,
+                            left: x,
+                            top: y,
                         }}
                     // animate="loop"
                     // variants={variantsFader}
                     >{e}</motion.h1>
                 )
             })} */}
+
+                {/* {titleArray.map((e, i) => {
+                    const opacity = (100 - (Math.round(Math.log(i + 1) * 38))) / 100;
+
+
+
+
+
+                    return (
+                        <motion.h1
+                            className={titleClassNames}
+                            // custom={{ i, distance: { x: c.newX, y: c.newY } }}
+                            key={e + i}
+                        // style={{
+                        //     opacity: opacity,
+                        //     left: x,
+                        //     top: y,
+                        // }}
+                        // animate="loop"
+                        // variants={variantsFader}
+                        >{e}</motion.h1>
+                    )
+                })}
+            </div> */}
         </div>
     )
 }
