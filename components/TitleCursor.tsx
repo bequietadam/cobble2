@@ -31,7 +31,7 @@ type TitleCursorProps = {
 
 const TitleCursor = ({
     animation = 'none',
-    delayAnimation = 2000,
+    delayAnimation = 0,
     fixCap = 1,
     // fontSize = '7xl',
     length = 5,
@@ -56,14 +56,14 @@ const TitleCursor = ({
         <div ref={ref} className="hero m-auto h-28 w-96 flex justify-center items-center relative">
             {titleArray.map((e, i) => {
                 const c = {
-                    newX: state.elementX * -0.1,
-                    newY: state.elementY * -0.1,
+                    newX: !!state.elementX ? state.elementX * -0.1 : 16,
+                    newY: !!state.elementY ? state.elementY * -0.1 : 44,
                 }
-                const opacity = (100 - ((70/(length )) * i ))/ 100;
+                const opacity = (100 - ((90/(length )) * i ))/ 100;
 
                 return (
                     <motion.h1
-                        className="absolute text-7xl opacity-95 bg-gradient-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent"
+                        className="absolute text-7xl opacity-95 bg-gradient-to-r from-primary-300 to-primary-400 bg-clip-text text-transparent"
                         key={e + i}
                         style={{
                             // opacity: opacity,
@@ -73,8 +73,8 @@ const TitleCursor = ({
                         transition={{
                             duration: i >= fixCap - 2 ? 0.15 + (i / (10 * length)) : 0.15,
                             opacity: {
-                                delay: 0.03 * (i * (i / (length / 2))),
-                                duration: flow ? 0.15 : 0.075
+                                delay: 0.03 * (i * (i / (length / 2.66))),
+                                duration: flow ? 0.15 : 0.088
                             }
                         }}
                         animate={{
