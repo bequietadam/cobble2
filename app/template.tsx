@@ -41,7 +41,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           pauseOnHover
         /> */}
       <Navigation />
-      <div className="p-4 grow flex flex-col justify-center items-stretch">
+      <div className="p-4 grow flex flex-col justify-center items-stretch overflow-hidden">
         {children}
       </div>
     </div>

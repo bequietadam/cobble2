@@ -6,6 +6,10 @@ export default function Page() {
 
 
   return (
-      <TitleCursor length={6} title="Bienvenue" />
+      <TitleCursor
+        fixCap={1}
+        length={6}
+        title="Bienvenue"
+        />
   )
 }
