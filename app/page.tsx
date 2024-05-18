@@ -7,8 +7,8 @@ export default function Page() {
 
   return (
       <TitleCursor
-        fixCap={1}
-        length={6}
+        fixCap={5}
+        length={12}
         title="Bienvenue"
         />
   )

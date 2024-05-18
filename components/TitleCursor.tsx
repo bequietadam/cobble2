@@ -83,7 +83,7 @@ const TitleCursor = ({
 
         const intervalFlow = setInterval(() => {
             setFlow(old => Number(!old));
-        }, flow ? (75 * length) + 150 : 2800)
+        }, flow ? (50 * length) + 50 : 2800)
 
         return () => {
             clearInterval(intervalStat);
