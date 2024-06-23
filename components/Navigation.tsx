@@ -28,7 +28,7 @@ export default function Navigation() {
       </NavbarContent>
       <NavbarContent justify="end">
         {!!isLoaded && !!user && <UserButton afterSignOutUrl='/' />}
-        <p className="hidden xs:block font-bold pt-1">COBBLES</p>
+        <p className="hidden xs:block font-bold text-slate-300 pt-1">COBBLES</p>
       </NavbarContent>
     </Navbar>
   )

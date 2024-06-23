@@ -1442,7 +1442,85 @@ h1 {
 };
 
 
-const filesP5js = {
+const filesP5 = {
+  "/index.html": {
+    code:
+    `<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p5.js example</title>
+</head>
+
+<body>
+  <main>
+  </main>
+  <script src="sketch.js"></script>
+</body>
+
+</html>`
+  },
+
+  "/sketch.js": {
+    code:
+`
+function setup() {
+  //full screen canvas
+  createCanvas(document.body.clientWidth, document.body.clientHeight);
+}
+
+function draw() {
+  background(0);
+}`,
+      active: true,
+  },
+  // "/index.js": {
+  //   code: `import "./sketch.js";
+  //   `,
+  // },
+  "/styles.css": {
+    code:
+    `html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  
+  background-color: #1b1b1b;
+}
+main {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+h1 {
+  font-size: 1.5rem;
+}`
+  },
+  "/package.json": {
+    code:
+      `{
+  "dependencies": {},
+  "main": "/index.html",
+  "devDependencies": {}
+}`
+  },
 
 }
 
@@ -1459,7 +1537,7 @@ const filesTypescript = {
 
   <body>
     <div id="app"></div>
-    <script src="index.ts"></script>
+    <script src="index.ts"></>
 </body>
 </html>`
   },
@@ -1802,7 +1880,7 @@ const presetFiles = {
   "framer-motion-ts": filesFramerMotionTs,
   "@react-three": filesReactThree,
   "@react-three-ts": filesReactThreeTs,
-  "p5.js": filesP5js,
+  "p5.js": filesP5,
   "typescript": filesTypescript,
   "html-css-js": filesHtmlCssJs,
 }

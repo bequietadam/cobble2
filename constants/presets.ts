@@ -76,12 +76,12 @@ const presets: Presets = {
     files: files['@react-three-ts'],
   },
 
-  // "p5.js": {
-  //   template:"static",
-  //   dependencies: {},
-  //   externalResources: [],
-  //   files: files['p5.js'],
-  // },
+  "p5.js": {
+    template:"static",
+    dependencies: {},
+    externalResources: [],
+    files: files['p5.js'],
+  },
   "typescript": {
     template: "vanilla-ts",
     dependencies: {},

@@ -51,7 +51,6 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [saved, setSaved] = useState(false);
-  const [resizeValue, setResizeValue] = useState(0);
 
   const { sandpack } = useSandpack();
   const { files, addFile, activeFile, deleteFile, lazyAnchorRef, openFile, runSandpack, status, updateFile, updateCurrentFile, visibleFiles } = sandpack;
@@ -61,6 +60,8 @@ const SandLayout = ({ onChangePreset, preset }: SandLayoutProps) => {
   const minWidth = 200; // width of the fileExplorer
   const maxWidth = width - 32 - (minWidth * 2);
   const [initWidth, setInitWidth] = useState((width - minWidth - 32) / 2)
+  
+  const [resizeValue, setResizeValue] = useState(initWidth);
 
   useEffect(() => {
     setInitWidth(state => state === resizeValue ? state : resizeValue)

@@ -59,14 +59,14 @@ const TitleCursor = ({
                     newX: !!state.elementX ? state.elementX * -0.1 : 16,
                     newY: !!state.elementY ? state.elementY * -0.1 : 44,
                 }
-                const opacity = (100 - ((90/(length )) * i ))/ 100;
+                const opacity = i >= fixCap && flow ? 0 : (100 - ((90/(length )) * (i + 0) ))/ 100;
 
                 return (
                     <motion.h1
                         className="absolute text-7xl opacity-95 bg-gradient-to-r from-primary-300 to-primary-400 bg-clip-text text-transparent"
                         key={e + i}
                         style={{
-                            // opacity: opacity,
+                            opacity: opacity,
                             top: 0,
                             left: 0,
                         }}
@@ -78,7 +78,7 @@ const TitleCursor = ({
                             }
                         }}
                         animate={{
-                            opacity: i >= fixCap && flow ? 0 : opacity,
+                            opacity: opacity,
                             top: (i >= fixCap && flow) ? c.newY * (i * 0.48 + (i / 100)) + 'px' : c.newY * (i * 0.28 + (i / 100)) + 'px',
                             left: (i >= fixCap && flow) ? c.newX * (i * 0.48 + (i / 100)) + 'px' : c.newX * (i * 0.28 + (i / 100)) + 'px',
                         }}
