@@ -59,7 +59,7 @@ const TitleCursor = ({
                     newX: !!state.elementX ? state.elementX * -0.1 : 16,
                     newY: !!state.elementY ? state.elementY * -0.1 : 44,
                 }
-                const opacity = i >= fixCap && flow ? 0 : (100 - ((90/(length )) * (i + 0) ))/ 100;
+                const opacity = i >= fixCap && flow ? 0 : (100 - ((90/(length )) * i ))/ 100;
 
                 return (
                     <motion.h1
