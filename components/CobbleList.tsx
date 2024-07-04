@@ -55,7 +55,7 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
           variants={containerVariants}
           initial="init"
           animate="anim"
-          className="mb-auto grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          className=" p-4 mb-auto overflow-auto grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
           {cobbles.map((cobble, id) => {
 

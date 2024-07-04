@@ -331,6 +331,7 @@ export default function SandEditor() {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
+        padding: 16,
       }}
       // customSetup={{
       //   dependencies: presets[preset].dependencies,
