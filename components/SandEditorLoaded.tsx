@@ -341,6 +341,7 @@ export default function SandEditorLoaded({ cobble }: PageProps) {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
+        padding: 16,
       }}
       // customSetup={{
       //   dependencies:  presets[cobble.preset].dependencies,

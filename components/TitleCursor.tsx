@@ -46,7 +46,7 @@ const TitleCursor = ({
     useLayoutEffect(() => {
         const intervalFlow = setInterval(() => {
             setFlow(old => Number(!old));
-        }, flow ? (50 * length) + 50 : 60 * length + (delayAnimation))
+        }, flow ? (60 * length) + 50 : 60 * length + (delayAnimation))
 
         return () => clearInterval(intervalFlow)
     }, [delayAnimation, flow, length])
@@ -73,9 +73,9 @@ const TitleCursor = ({
                         transition={{
                             duration: i >= fixCap - 2 ? 0.15 + (i / (10 * length)) : 0.15,
                             opacity: {
-                                delay: 0.03 * (i * (i / (length / 2.66))),
-                                duration: flow ? 0.15 : 0.088
-                            }
+                                delay: 0.018 * (i * (i / (length / 2.66))),
+                                duration: flow ? 0.15 : 0.088,
+                            },
                         }}
                         animate={{
                             opacity: opacity,
