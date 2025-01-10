@@ -2,7 +2,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Sandpack, SandpackCodeEditor, SandpackConsole, SandpackFileExplorer, SandpackFiles, SandpackLayout, SandpackPreview, SandpackProvider, useSandpack } from '@codesandbox/sandpack-react';
 import { nightOwl } from '@codesandbox/sandpack-themes';
-import ThemeDropdown from '@components/ThemeDropdown';
 import presets from '@constants/presets';
 import PresetDropdown, { Preset } from '@components/PresetDropdown';
 import { Button, Input } from '@nextui-org/react';
@@ -227,8 +226,6 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
               variant="ghost"
               size="sm"
             >{showNewFileInput ? 'save new file' : 'add new file'}</Button>
-            {/* <PresetDropdown onSelect={onChangePreset} selected={preset} /> */}
-            {/* <ThemeDropdown onSelect={handleThemeChange} theme={theme} /> */}
           </div>
         </div>
       </div>
