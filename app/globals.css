@@ -46,10 +46,10 @@ body {
 .container {
   transition-property: opacity, filter;
   transition-timing-function: ease-in-out;
-  /* transition-duration: 330ms; */
+  transition-duration: 250ms;
 }
 .page-transition {
   opacity: 0;
   filter: blur(12px);
-  transition-duration: 330ms;
+  transition-duration: 250ms;
 }

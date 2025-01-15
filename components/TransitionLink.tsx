@@ -26,9 +26,7 @@ const TransitionLink = ({ href, children, ...props }: Props) => {
     container?.classList.add("page-transition");
     // await sleep(250)
     await sleep(400, () => router.push(href));
-    console.log('pushed href')
     await sleep(400);
-    console.log('awaited after')
     // router.push(href);
 
     container?.classList.remove("page-transition")
