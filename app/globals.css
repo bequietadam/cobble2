@@ -20,11 +20,6 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: black;
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    ); */
 }
 
 .hero h1 {
@@ -46,4 +41,15 @@ body {
   position: fixed;
   top: 63px;
   left: 34px;
+}
+
+.container {
+  transition-property: opacity, filter;
+  transition-timing-function: ease-in-out;
+  /* transition-duration: 330ms; */
+}
+.page-transition {
+  opacity: 0;
+  filter: blur(12px);
+  transition-duration: 330ms;
 }

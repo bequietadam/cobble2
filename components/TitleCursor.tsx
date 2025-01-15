@@ -5,35 +5,19 @@ import { useLayoutEffect, useState } from 'react';
 
 
 
-// type TailwindFontSize =
-//     'xs' |
-//     'sm' |
-//     'base' |
-//     'lg' |
-//     'xl' |
-//     '2xl' |
-//     '3xl' |
-//     '4xl' |
-//     '5xl' |
-//     '6xl' |
-//     '7xl' |
-//     '8xl' |
-//     '9x;'
-
 type TitleCursorProps = {
     animation?: 'none' | 'bump' | 'flow',
     delayAnimation?: number;
     fixCap?: number,
-    // fontSize?: TailwindFontSize,
     length?: number,
     title?: string,
 }
+
 
 const TitleCursor = ({
     animation = 'none',
     delayAnimation = 0,
     fixCap = 1,
-    // fontSize = '7xl',
     length = 5,
     title = 'Hello World',
 }: TitleCursorProps) => {

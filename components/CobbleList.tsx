@@ -42,7 +42,8 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
     anim: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.6
+        ease: 'easeOut',
+        duration: 0.6,
       }
     }
   }
@@ -63,9 +64,9 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
               <motion.div
                 custom={id}
                 key={id + cobble.title}
-                initial="init"
-                animate="anim"
-                variants={cardVariants}
+                // initial="init"
+                // animate="anim"
+                // variants={cardVariants}
                 className="w-full"
               >
                 <Card
@@ -76,7 +77,6 @@ export default function CobbleList({ cobbles }: CobbleListProps) {
                 >
 
                   <motion.div
-                    // className="flex flex-col justify-between items-start overflow-hidden py-2 px-4 absolute  left-4 bottom-4 rounded-2xl w-[calc(100%_-_2rem)] shadow-small z-10 bg-gradient-to-r from-primary-100/90 to-black/90 backdrop-blur-sm"
                     className="flex wrap flex-col justify-between items-start rounded-2xl py-2 px-4 m-1.5 w-full shadow-medium absolute bottom-0 z-10 bg-gradient-to-r from-primary-100 to-black backdrop-blur-sm"
                     style={{
                       width: 'calc(100% - 12px)',

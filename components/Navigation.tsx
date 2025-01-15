@@ -1,6 +1,7 @@
 "use client"
 import { UserButton, useUser } from '@clerk/nextjs';
 import { Link, Navbar, NavbarContent, NavbarItem } from '@nextui-org/react';
+import TransitionLink from './TransitionLink';
 
 
 export default function Navigation() {
@@ -17,13 +18,13 @@ export default function Navigation() {
     >
       <NavbarContent className="sm:flex gap-4" justify="start">
         <NavbarItem>
-          <Link href="/">Home</Link>
+          <TransitionLink href="/">Home</TransitionLink>
         </NavbarItem>
         <NavbarItem>
-          <Link href="/editor">Editor</Link>
+          <TransitionLink href="/editor">Editor</TransitionLink>
         </NavbarItem>
         <NavbarItem>
-          <Link href="/cairn">Collection</Link>
+          <TransitionLink href="/cairn">Collection</TransitionLink>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">

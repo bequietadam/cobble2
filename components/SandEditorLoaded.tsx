@@ -108,8 +108,8 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
         setSaved(false);
         setMessage('saved! :)')
         setTimeout(() => setMessage(''), 3000);
-      } catch (errorMessage: any) {
-        setError(errorMessage);
+      } catch (errorMessage: unknown) {
+        setError(errorMessage as string);
         setSaved(false);
       }
     } else if (!title) {
