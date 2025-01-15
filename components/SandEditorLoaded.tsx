@@ -189,6 +189,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
                   className="w-full absolute top-0 right-0"
                   animate={showNewFileInput ? 'anim' : 'init'}
                   variants={toolVariants}
+                  key="text-editor"
                 >
                   <Input
                     className="text-default-500"
@@ -206,6 +207,7 @@ const SandLayout = ({ cobble, onChangePreset, preset }: SandLayoutProps) => {
                   className="w-full xs:w-auto absolute top-0 right-0"
                   animate={!showNewFileInput ? 'anim' : 'init'}
                   variants={toolVariants}
+                  key="viewer"
                 >
                   <Button
                     className="px-6 opacity-90"
