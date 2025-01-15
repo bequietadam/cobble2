@@ -8,10 +8,7 @@ type Props = {
   href: string;
 } & LinkProps;
 
-function sleep (ms: number, callback?: () => void): Promise<void> {
-  if (!!callback) {
-    callback();
-  }
+function sleep (ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
@@ -24,12 +21,8 @@ const TransitionLink = ({ href, children, ...props }: Props) => {
 
     const container = document.querySelector("#container");
     container?.classList.add("page-transition");
-    // await sleep(250)
-    await sleep(400, () => router.push(href));
-    await sleep(400);
-    // router.push(href);
-
-    container?.classList.remove("page-transition")
+    await sleep(250);
+    router.push(href)
   }
   return (
     <Link
